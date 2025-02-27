@@ -1,3 +1,5 @@
+import Router from '@/config/router';
+
 export default function App() {
-  return <div>App</div>;
+  return <Router />;
 }
