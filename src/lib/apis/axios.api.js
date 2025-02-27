@@ -3,7 +3,7 @@ import axios from "axios";
 const supabaseUrl = import.meta.env.VITE_LOCALENDAR_SUPABASE_URL;
 const supabaseKey = import.meta.env.VITE_LOCALENDAR_SUPABASE_API;
 
-const axiosInstance = axios.create({
+const axiosApi = axios.create({
   baseURL: `${supabaseUrl}/rest/v1/`,
   headers: {
     apikey: supabaseKey,
@@ -12,4 +12,4 @@ const axiosInstance = axios.create({
   },
 });
 
-export default axiosInstance;
+export default axiosApi;

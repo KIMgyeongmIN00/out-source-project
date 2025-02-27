@@ -6,14 +6,10 @@ export const useAuthStore = create((set) => ({
   user: null,
   isAuthenticated: false,
   setUser: (user) => set({ user, isAuthenticated: !!user }),
-  logout: async () => {
-    await supabase.auth.signOut();
-    set({ user: null, isAuthenticated: false });
-  },
 }));
 
 // 인증 상태 변경 감지
-supabase.auth.onAuthStateChange((event, session) => {
+supabase.auth.onAuthStateChange(async (event, session) => {
   const { user } = session || {};
-  useAuthStore.getState().setUser(user);
+  await useAuthStore.getState().setUser({ id: user?.id, email: user?.email });
 });
