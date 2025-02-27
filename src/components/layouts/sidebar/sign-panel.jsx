@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import SignInForm from '@/components/layouts/sidebar/sign-in-form';
+import SignUpForm from '@/components/layouts/sidebar/sign-up-form';
 
-export default function AuthSignPanel() {
+export default function SignPanel() {
   const [isSignIn, setIsSignIn] = useState(true);
 
   return (
@@ -19,17 +20,7 @@ export default function AuthSignPanel() {
           </Button>
         </li>
       </ul>
-      <form>
-        <Input type="email" name="email" placeholder="아이디 입력" className="rounded-b-none" />
-        <Input
-          type="password"
-          name="password"
-          placeholder="비밀번호 입력"
-          className={isSignIn ? 'rounded-t-none' : 'rounded-none'}
-        />
-        {!isSignIn && <Input type="text" name="nickname" placeholder="닉네임 입력" className="rounded-t-none" />}
-        <Button className="w-full mt-4">{isSignIn ? '로그인' : '회원가입'}</Button>
-      </form>
+      {isSignIn ? <SignInForm /> : <SignUpForm />}
     </section>
   );
 }
