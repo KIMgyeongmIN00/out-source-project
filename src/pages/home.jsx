@@ -1,3 +1,4 @@
+import { MAP_SCALE_50M } from '@/constants/map-scale';
 import { useKakaoMapQuery } from '@/lib/apis/map.api';
 import { Map } from 'react-kakao-maps-sdk';
 
@@ -15,7 +16,7 @@ export default function Home() {
         lng: 126.570667
       }}
       className="w-full h-full"
-      level={3}
+      level={MAP_SCALE_50M}
     />
   );
 }
