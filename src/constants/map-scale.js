@@ -1,0 +1,14 @@
+export const MAP_SCALE_20M = 1;
+export const MAP_SCALE_30M = 2;
+export const MAP_SCALE_50M = 3;
+export const MAP_SCALE_100M = 4;
+export const MAP_SCALE_250M = 5;
+export const MAP_SCALE_500M = 6;
+export const MAP_SCALE_1KM = 7;
+export const MAP_SCALE_2KM = 8;
+export const MAP_SCALE_4KM = 9;
+export const MAP_SCALE_8KM = 10;
+export const MAP_SCALE_16KM = 11;
+export const MAP_SCALE_32KM = 12;
+export const MAP_SCALE_64KM = 13;
+export const MAP_SCALE_128KM = 14;
