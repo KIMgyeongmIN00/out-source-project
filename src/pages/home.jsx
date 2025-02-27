@@ -5,10 +5,10 @@ export default function Home() {
   const { KakaoMapLoading, KakaoMapError } = useKakaoMapQuery();
 
   // 로딩 중일 때 화면에 로딩 메시지 표시
-  if (KakaoMapLoading) return <div>Loading...</div>;
+  if (KakaoMapLoading) return <div>로딩중입니다...</div>;
 
   // 에러가 있을 경우 에러 메시지 표시
-  if (KakaoMapError) return <div>Error loading map: {KakaoMapError.message}</div>;
+  if (KakaoMapError) return <div>에러입니다...{KakaoMapError.message}</div>;
 
   return (
     <Map
