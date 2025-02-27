@@ -18,7 +18,7 @@ export default function Home() {
       }}
       style={{
         width: '100%',
-        height: '450px'
+        height: '100%'
       }}
       level={3}
     />
