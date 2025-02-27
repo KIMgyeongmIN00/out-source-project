@@ -10,11 +10,13 @@ export default function useSignUpForm() {
 
   function handleBlurEvent(e) {
     const { name, value } = e.target;
-    if (authValidate.isValidValue(name, value))
-      return setErrorMessages((prev) => ({ ...prev, [name]: { ...prev[name], message: '' } }));
-
+    const isValidValue = authValidate.checkValidValue(name, value);
     const errorMessage = authValidate.getErrorMessage(name);
-    return setErrorMessages((prev) => ({ ...prev, [name]: { ...prev[name], message: errorMessage } }));
+
+    if (isValidValue && errorMessages[name].message !== '')
+      return setErrorMessages((prev) => ({ ...prev, [name]: { ...prev[name], message: '' } }));
+    if (!isValidValue && errorMessages[name].message === '')
+      return setErrorMessages((prev) => ({ ...prev, [name]: { ...prev[name], message: errorMessage } }));
   }
 
   function setErrorMessage(invalidField) {
@@ -34,7 +36,7 @@ export default function useSignUpForm() {
       nickname: form.get('nickname')
     };
 
-    const invalidField = authValidate.isInvalidForm(formData);
+    const invalidField = authValidate.checkInvalidForm(formData);
     if (invalidField) return setErrorMessage();
 
     // TODO: 회원가입 api 연결

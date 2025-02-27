@@ -7,8 +7,8 @@ const NICKNAME_REGEX = /^[a-zA-Z가-힣0-9]{1,10}$/;
  * @param {object} formData - 유효성 검사할 객체 타입의 입력. 예시) { email: 'asdf@naver.com', password: 'example-password', nickname: '1234' }
  * @returns {string | null} - 유효성 검사에 실패한 key, 모두 통과하면 null 반환
  */
-function isInvalidForm(formData) {
-  const invalidEntry = Object.entries(formData).find(([key, value]) => !isValidValue(key, value));
+function checkInvalidForm(formData) {
+  const invalidEntry = Object.entries(formData).find(([key, value]) => !checkValidValue(key, value));
   return invalidEntry ? invalidEntry[0] : null;
 }
 
@@ -18,7 +18,7 @@ function isInvalidForm(formData) {
  * @param {string} value - 검사할 필드의 값
  * @returns {boolean} - 유효성 검사 통과 여부 (true: 통과, false: 실패)
  */
-function isValidValue(name, value) {
+function checkValidValue(name, value) {
   switch (name) {
     case 'email':
       return EMAIL_REGEX.test(value);
@@ -50,8 +50,8 @@ function getErrorMessage(name) {
 }
 
 const authValidate = {
-  isInvalidForm,
-  isValidValue,
+  checkInvalidForm,
+  checkValidValue,
   getErrorMessage
 };
 export default authValidate;

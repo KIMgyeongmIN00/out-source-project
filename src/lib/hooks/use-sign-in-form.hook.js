@@ -8,8 +8,10 @@ export default function useSignInForm() {
 
   function handleBlurEvent(e) {
     const { name, value } = e.target;
-    if (value !== '') return setErrorMessages((prev) => ({ ...prev, [name]: { ...prev[name], message: '' } }));
-    return setErrorMessages((prev) => ({ ...prev, [name]: { ...prev[name], message: '필수 입력 정보입니다.' } }));
+    if (value !== '' && errorMessages[name].message !== '')
+      setErrorMessages((prev) => ({ ...prev, [name]: { ...prev[name], message: '' } }));
+    if (value === '' && errorMessages[name].message === '')
+      setErrorMessages((prev) => ({ ...prev, [name]: { ...prev[name], message: '필수 입력 정보입니다.' } }));
   }
 
   function isInvalidForm(formData) {
