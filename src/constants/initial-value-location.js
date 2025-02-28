@@ -1,0 +1,4 @@
+export const GANGNAMSTATION = {
+  lat: 37.498004414546934,
+  lng: 127.02770621963765
+};
