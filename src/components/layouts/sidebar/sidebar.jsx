@@ -9,7 +9,7 @@ export default function Sidebar() {
     id: crypto.randomUUID(),
     nickname: '오스트랄로피테쿠스',
     email: 'asdf@gmail.com',
-    profileUrl: 'https://buly.kr/4QmkLtE'
+    profileUrl: null
   };
 
   return (
