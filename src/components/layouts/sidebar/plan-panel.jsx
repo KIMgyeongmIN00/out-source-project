@@ -7,23 +7,27 @@ export default function PlanPanel({ id }) {
   return (
     <session className="flex-1 flex flex-col overflow-hidden rounded-lg">
       <h3 className="font-bold text-xl mb-2">일정</h3>
-      <div className="flex-1 overflow-hidden bg-gradient-to-t from-primary/30 via-transparent via-20% to-transparent">
-        <ul className="h-full overflow-y-scroll">
-          {plans.map((plan) => (
-            <li key={plan.id} className="p-2 mb-3 border border-primary rounded-sm">
-              <h5 className="font-semibold overflow-hidden text-ellipsis text-nowrap">{plan.title}</h5>
-              <p className="text-sm flex items-center gap-1">
-                <MdOutlineAccessTime className="mr-1" />
-                <span className="flex-1 overflow-hidden text-ellipsis text-nowrap">{plan.date}</span>
-              </p>
-              <p className="text-sm flex items-center gap-1">
-                <MdOutlineLocationOn className="mr-1" />
-                <span className="flex-1 overflow-hidden text-ellipsis text-nowrap">{plan.address}</span>
-              </p>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {plans.length === 0 ? (
+        <p className="text-center py-4">일정이 없습니다!</p>
+      ) : (
+        <div className="flex-1 overflow-hidden bg-gradient-to-t from-primary/30 via-transparent via-20% to-transparent">
+          <ul className="h-full overflow-y-scroll">
+            {plans.map((plan) => (
+              <li key={plan.id} className="p-2 mb-3 border border-primary rounded-sm">
+                <h5 className="font-semibold overflow-hidden text-ellipsis text-nowrap">{plan.title}</h5>
+                <p className="text-sm flex items-center gap-1">
+                  <MdOutlineAccessTime className="mr-1" />
+                  <span className="flex-1 overflow-hidden text-ellipsis text-nowrap">{plan.date}</span>
+                </p>
+                <p className="text-sm flex items-center gap-1">
+                  <MdOutlineLocationOn className="mr-1" />
+                  <span className="flex-1 overflow-hidden text-ellipsis text-nowrap">{plan.address}</span>
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </session>
   );
 }
