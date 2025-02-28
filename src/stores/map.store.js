@@ -1,12 +1,12 @@
 import { create } from 'zustand';
 
-export const INITIALVALUELOCATION = {
+const INITIAL_VALUE_LOCATION = {
   lat: 37.498004414546934,
   lng: 127.02770621963765
 };
 
 export const useMapStore = create((set) => ({
-  center: INITIALVALUELOCATION,
+  center: INITIAL_VALUE_LOCATION,
 
   setTargetLocation: (lat, lng) =>
     set(() => ({
