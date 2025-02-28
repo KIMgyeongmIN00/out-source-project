@@ -7,7 +7,7 @@ export const mapStore = create((set) => ({
     lng: 127.02770621963765
   },
 
-  setLatlng: (lat, lng) =>
+  setCenter: (lat, lng) =>
     set(() => ({
       center: { lat, lng }
     }))
