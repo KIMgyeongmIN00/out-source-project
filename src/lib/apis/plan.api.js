@@ -2,16 +2,16 @@ import axiosApi from "@api/axios.api";
 
 
 // 내 계획 갯수대로 가져오기 (무한 스크롤은 추가 로직으로 limit와 offset 알고리즘 구현 해야됩니다...)
+// limit => 얼만큼? , offset => 어디서 부터?
 export async function fetchMyPlansLimit(myId, limit, offset) {
   const response = await axiosApi.get('plans', {
     params: {
       select: '*',
-      ...{ user_id: `eq.${myId}` },
+      user_id: `eq.${myId}`,
       limit,
       offset,
     },
   });
-  console.log(response)
   return response;
 }
 
@@ -20,7 +20,8 @@ export async function fetchPlacePlan(address, myId) {
   const response = await axiosApi.get('plans', {
     params: {
       select: '*',
-      ...{ address: `eq.${address}`, user_id: `eq.${myId}` },
+      address: `eq.${address}`,
+      user_id: `eq.${myId}`,
     },
   });
   return response;
@@ -31,7 +32,7 @@ export async function fetchSharePlan(planId) {
   const response = await axiosApi.get('plans', {
     params: {
       select: '*',
-      ...{ id: `eq.${planId}` },
+      id: `eq.${planId}`,
     },
   });
   return response;
@@ -54,4 +55,3 @@ export async function deleteData(id) {
   const response = await axiosApi.delete(`plans?id=eq.${id}`);
   return response;
 };
-
