@@ -7,13 +7,15 @@ import {
   AlertDialogFooter,
   AlertDialogAction
 } from '@/components/ui/alert-dialog';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function WarningAlert({ openState, changeOpenState }) {
+export default function PleaseSignInAlert() {
   const navigate = useNavigate();
+  const [open, setOpen] = useState(true);
 
   return (
-    <AlertDialog open={openState} onOpenChange={changeOpenState}>
+    <AlertDialog open={open}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogDescription className="place-self-center w-4/5 box-border px-6">
@@ -24,7 +26,7 @@ export default function WarningAlert({ openState, changeOpenState }) {
         <AlertDialogFooter className="place-self-center">
           <AlertDialogAction
             onClick={() => {
-              changeOpenState(false);
+              setOpen(false);
               navigate('/');
             }}
           >
