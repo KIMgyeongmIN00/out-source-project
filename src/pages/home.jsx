@@ -6,13 +6,13 @@ import { Map } from 'react-kakao-maps-sdk';
 
 export default function Home() {
   const { kakaoMapLoading, kakaoMapError } = useKakaoMapQuery();
-  const { initialValueLocation, getTargetLocation } = useMapStore();
+  const { center, setTargetLocation } = useMapStore();
 
-  // 현재 사용자 위치 표시 or 거부시 디폴트 위치 표시(강남역)
+  // 현재 사용자 위치 표시 or 거부시 디폴트 위치 표시
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        getTargetLocation(position.coords.latitude, position.coords.longitude);
+        setTargetLocation(position.coords.latitude, position.coords.longitude);
       });
     }
   }, []);
@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <Map
-      center={initialValueLocation}
+      center={center}
       className="w-full h-full"
       level={MAP_SCALE_50M} // 확대 수준 (기본값: 50M)
       keyboardShortcuts={true} // 키보드의 방향키와 +, – 키로 지도 이동,확대,축소 가능 여부 (기본값: false)

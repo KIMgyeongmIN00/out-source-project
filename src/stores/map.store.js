@@ -1,11 +1,15 @@
-import { GANGNAMSTATION } from '@/constants/initial-value-location';
 import { create } from 'zustand';
 
-export const useMapStore = create((set) => ({
-  initialValueLocation: GANGNAMSTATION,
+export const INITIALVALUELOCATION = {
+  lat: 37.498004414546934,
+  lng: 127.02770621963765
+};
 
-  getTargetLocation: (lat, lng) =>
+export const useMapStore = create((set) => ({
+  center: INITIALVALUELOCATION,
+
+  setTargetLocation: (lat, lng) =>
     set(() => ({
-      initialValueLocation: { lat, lng }
+      center: { lat, lng }
     }))
 }));
