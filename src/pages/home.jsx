@@ -24,7 +24,7 @@ export default function Home() {
     <Map
       center={center}
       className="w-full h-full"
-      level={MAP_SCALE_50M} // 확대 수준 (기본값: 3)
+      level={MAP_SCALE_50M} // 확대 수준 (기본값: 50M)
       keyboardShortcuts={true} // 키보드의 방향키와 +, – 키로 지도 이동,확대,축소 가능 여부 (기본값: false)
     />
   );
