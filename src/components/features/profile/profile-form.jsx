@@ -62,7 +62,7 @@ export default function ProfileForm() {
         return;
       }
 
-      if (nickname.match(/^[a-zA-Z가-힣0-9]+$/)) {
+      if (!nickname.match(/^[a-zA-Z가-힣0-9]+$/)) {
         alert('닉네임은 영문, 한글, 숫자만 입력해주세요.');
         return;
       }
