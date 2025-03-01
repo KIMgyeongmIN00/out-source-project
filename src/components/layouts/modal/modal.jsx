@@ -11,7 +11,7 @@ import { DialogDescription } from '@radix-ui/react-dialog';
 import useForm from '@/lib/hooks/useForm';
 import { EDIT_MODE, SET_MODE } from '@/constants/modal-constants';
 
-export default function Modal({ mode, btn1Text, btn2Text, btn3Text, onShareClick, onDeleteClick, onSubmitClick }) {
+export default function Modal({ mode, shareText, deleteText, submitText, onShareClick, onDeleteClick, onSubmitClick }) {
   const { formState, handleChange, handleChangeLocation, resetForm } = useForm({
     location: { address: '', latitude: 0, longitude: 0 },
     title: '카카오 취업하기',
@@ -36,6 +36,7 @@ export default function Modal({ mode, btn1Text, btn2Text, btn3Text, onShareClick
           <DialogHeader className="flex justify-between items-center">
             <div className="flex items-center gap-2">
               <DialogTitle className="text-lg font-semibold text-primary">{title}</DialogTitle>
+              <DialogDescription />
 
               {/* 이걸 누르면 제목 수정이 가능하도록 추후 계발 예정정 */}
               <button className="text-gray-500 hover:text-red-500">
@@ -68,14 +69,14 @@ export default function Modal({ mode, btn1Text, btn2Text, btn3Text, onShareClick
                 className="flex items-center gap-1 px-3 py-1.5 text-sm"
                 onClick={onShareClick}
               >
-                {btn1Text}
+                {shareText}
               </Button>
               <Button
                 variant="destructive"
                 className="flex items-center gap-1 px-3 py-1.5 text-sm"
                 onClick={onDeleteClick}
               >
-                <Trash2 className="w-4 h-4" /> {btn2Text}
+                <Trash2 className="w-4 h-4" /> {deleteText}
               </Button>
             </>
           )}
@@ -83,7 +84,7 @@ export default function Modal({ mode, btn1Text, btn2Text, btn3Text, onShareClick
             className="bg-primary text-primary-foreground px-3 py-1.5 rounded-lg hover:bg-primary/90 text-sm"
             onClick={onSubmitClick}
           >
-            {btn3Text}
+            {submitText}
           </Button>
         </DialogFooter>
       </DialogContent>
