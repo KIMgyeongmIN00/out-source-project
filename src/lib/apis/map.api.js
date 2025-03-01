@@ -7,11 +7,10 @@ export function useKakaoMapQuery() {
   const [loading, error] = useKakaoLoader({
     appkey: KAKAO_MAP_API_KEY
   });
-
   return { kakaoMapLoading: loading, kakaoMapError: error };
 }
 
-export const useKakaoAddressQuery = (lat, lng) => {
+export function useKakaoAddressQuery(lat, lng) {
   return useQuery({
     queryKey: ['kakaoAddress', lat, lng],
     queryFn: async () => {
@@ -24,4 +23,4 @@ export const useKakaoAddressQuery = (lat, lng) => {
       }
     }
   });
-};
+}
