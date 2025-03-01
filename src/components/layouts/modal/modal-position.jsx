@@ -8,7 +8,7 @@ export default function ModalPosition({ address }) {
     <div>
       <label className="flex items-center gap-2 text-sm font-semibold text-primary">
         <MapPin className="w-4 h-4 text-primary" />
-        일정장소{' '}
+        일정장소
       </label>
       <Input type="text" value={address} className="mt-0.5 text-sm p-2" />
       <div className="w-full h-20 rounded-xl overflow-hidden border border-border">

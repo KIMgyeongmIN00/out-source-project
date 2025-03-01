@@ -9,29 +9,17 @@ import { useState } from 'react';
 import Title from './modal-title';
 import { DialogDescription } from '@radix-ui/react-dialog';
 import { EDIT_MODE, SET_MODE } from '@/constants/constants';
+import useForm from '@/lib/hooks/useForm';
 
-export default function Modal(props) {
-  const { mode, btn1Text, btn2Text, btn3Text, onShareClick, onDeleteClick, onSubmitClick } = props;
-  const [location, setLocation] = useState({
-    address: '',
-    latitude: 0,
-    longitude: 0
+export default function Modal({ mode, btn1Text, btn2Text, btn3Text, onShareClick, onDeleteClick, onSubmitClick }) {
+  const { formState, handleChange, handleChangeLocation, resetForm } = useForm({
+    location: { address: '', latitude: 0, longitude: 0 },
+    title: '카카오 취업하기',
+    date: '',
+    memo: '일정 상세내용'
   });
-  const [title, setTitle] = useState('카카오 취업하기');
-  const [date, setDate] = useState('');
-  const [memo, setMemo] = useState('일정 상세내용');
 
-  const handleLocation = (newLocation) => setLocation(newLocation);
-
-  const handleTitle = (newTitle) => {
-    setTitle(newTitle);
-  };
-  const handleDate = (newDate) => {
-    setDate(newDate);
-  };
-  const handleMemo = (newMemo) => {
-    setMemo(newMemo);
-  };
+  const { location, title, date, memo } = formState;
 
   return (
     <Dialog isOpen={true}>
@@ -60,22 +48,26 @@ export default function Modal(props) {
         )}
 
         {/* 일정 장소 */}
-        <ModalPosition address={location.address} />
+        <ModalPosition address={location.address} onLocationChange={handleChangeLocation} />
 
         {/* 일정 이름 */}
-        {(mode === SET_MODE || mode === EDIT_MODE) && <Title onTitleChange={handleTitle} />}
+        {(mode === SET_MODE || mode === EDIT_MODE) && <Title onTitleChange={handleChange} />}
 
         {/* 일정 날짜 */}
-        <ModalDate date={date} onDateChange={handleDate} />
+        <ModalDate date={date} onDateChange={handleChange} />
 
         {/* 일정 메모 */}
-        <ModalMemo memo={memo} onMemoChange={handleMemo} />
+        <ModalMemo memo={memo} onMemoChange={handleChange} />
 
         {/* 버튼 영역 */}
         <DialogFooter className="flex justify-end gap-2 mt-2">
           {mode === 'edit' && (
             <>
-              <Button variant="secondary" className="flex items-center gap-1 px-3 py-1.5 text-sm" onClick={onShareClick}>
+              <Button
+                variant="secondary"
+                className="flex items-center gap-1 px-3 py-1.5 text-sm"
+                onClick={onShareClick}
+              >
                 {btn1Text}
               </Button>
               <Button
