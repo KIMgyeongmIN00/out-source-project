@@ -39,9 +39,8 @@ export default function ProfileForm() {
       updateProfileMutation.mutate({ nickname: user.nickname });
       alert('수정완료');
       setEditMode(!editMode);
-    } else {
-      setEditMode(!editMode);
     }
+    setEditMode((prev) => !prev);
   };
 
   return (
