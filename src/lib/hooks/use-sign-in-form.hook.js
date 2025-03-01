@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { signIn } from '@/lib/apis/auth.api';
+import sweetAlert from '@/lib/utils/sweet-alert.util';
 
 export default function useSignInForm() {
   const [errorMessages, setErrorMessages] = useState({
@@ -19,11 +21,11 @@ export default function useSignInForm() {
     return invalidEntry ? invalidEntry[0] : null;
   }
 
-  function handleSubmitEvent(e) {
+  async function handleSubmitEvent(e) {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const formData = {
-      id: form.get('id'),
+      email: form.get('email'),
       password: form.get('password')
     };
 
@@ -33,9 +35,10 @@ export default function useSignInForm() {
         ...prev,
         [invalidField]: { ...prev[invalidField], message: '필수 입력 정보입니다.' }
       }));
-
-      // TODO: 로그인 api 연결
     }
+
+    const { error } = await signIn(formData);
+    if (error) sweetAlert.error('로그인 실패', '이메일 또는 비밀번호가 틀렸습니다.');
   }
 
   return { errorMessages, handleBlurEvent, handleSubmitEvent };

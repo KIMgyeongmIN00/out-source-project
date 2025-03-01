@@ -1,8 +1,17 @@
 import { create } from 'zustand';
 
-// 인증 상태 관리
-export const useAuthStore = create((set) => ({
-  user: null,
-  isAuthenticated: false,
-  setUser: (user) => set({ user, isAuthenticated: !!user }),
-}));
+const initialUserValue = {
+  id: '',
+  email: '',
+  nickname: '',
+  profileUrl: null
+};
+
+export const useAuthStore = create((set) => {
+  return {
+    user: null,
+    isAuthenticated: false,
+    setUser: (user) => set({ user, isAuthenticated: !!user }),
+    clearUser: () => set({ user: initialUserValue, isAuthenticated: false })
+  };
+});
