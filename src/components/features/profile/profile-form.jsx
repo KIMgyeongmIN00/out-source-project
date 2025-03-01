@@ -47,25 +47,13 @@ export default function ProfileForm() {
     e.preventDefault();
 
     if (editMode) {
-      if (!nickname.trim()) {
-        alert('닉네임을 입력해주세요.');
-        return;
-      }
+      if (!nickname.trim()) return alert('닉네임을 입력해주세요.');
 
-      if (nickname.length > 10) {
-        alert('닉네임은 10자 이하로 입력해주세요.');
-        return;
-      }
+      if (nickname.length > 10) return alert('닉네임은 10자 이하로 입력해주세요.');
 
-      if (nickname.length < 1) {
-        alert('닉네임을 입력해주세요.');
-        return;
-      }
+      if (nickname.length < 1) return alert('닉네임을 입력해주세요.');
 
-      if (!nickname.match(/^[a-zA-Z가-힣0-9]+$/)) {
-        alert('닉네임은 영문, 한글, 숫자만 입력해주세요.');
-        return;
-      }
+      if (!nickname.match(/^[a-zA-Z가-힣0-9]+$/)) return alert('닉네임은 영문, 한글, 숫자만 입력해주세요.');
 
       updateProfileMutation.mutate({ nickname: userData.nickname });
       alert('수정완료');
