@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { MdOutlinePerson, MdLogout } from 'react-icons/md';
 import { Button } from '@/components/ui/button';
+import { signOut } from '@/lib/apis/auth.api';
 
 export default function UserPanel({ user }) {
   return (
@@ -19,7 +20,7 @@ export default function UserPanel({ user }) {
             <MdOutlinePerson />
           </Link>
         </Button>
-        <Button size="icon">
+        <Button size="icon" onClick={() => signOut()}>
           <MdLogout />
         </Button>
       </div>
