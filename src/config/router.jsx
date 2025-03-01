@@ -1,4 +1,5 @@
 import Home from '@/pages/home';
+import Profile from '@/pages/profile';
 import RootLayout from '@layouts/root-layout';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ProtectedRouter from './protected-router';
@@ -18,8 +19,8 @@ export default function Router() {
           element: <ProtectedRouter />,
           children: [
             {
-              path: '/example',
-              element: <div>예시 컴포넌트</div>
+              path: '/profile',
+              element: <Profile />
             }
           ]
         }
