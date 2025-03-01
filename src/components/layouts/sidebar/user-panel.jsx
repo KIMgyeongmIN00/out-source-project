@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 
 export default function UserPanel({ user }) {
   return (
-    <session className="flex flex-col gap-4 items-center">
+    <section className="flex flex-col gap-4 items-center">
       <img
         src={user.profileUrl || '/default_profile.png'}
         alt={`${user.nickname} 프로필`}
@@ -24,6 +24,6 @@ export default function UserPanel({ user }) {
           <MdLogout />
         </Button>
       </div>
-    </session>
+    </section>
   );
 }

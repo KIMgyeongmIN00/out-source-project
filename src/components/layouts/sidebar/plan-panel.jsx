@@ -5,7 +5,7 @@ export default function PlanPanel({ id }) {
   const plans = getPlansById(id);
 
   return (
-    <session className="flex-1 flex flex-col overflow-hidden rounded-lg">
+    <section className="flex-1 flex flex-col overflow-hidden rounded-lg">
       <h3 className="font-bold text-xl mb-2">일정</h3>
       {plans.length === 0 ? (
         <p className="text-center py-4">일정이 없습니다!</p>
@@ -28,7 +28,7 @@ export default function PlanPanel({ id }) {
           </ul>
         </div>
       )}
-    </session>
+    </section>
   );
 }
 
