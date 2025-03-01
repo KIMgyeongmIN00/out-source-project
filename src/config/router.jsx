@@ -15,13 +15,13 @@ export default function Router() {
           element: <Home />
         },
         {
-          path: 'profile',
-          element: <Profile />
-        },
-        {
           path: '',
           element: <ProtectedRouter />,
           children: [
+            {
+              path: '/profile',
+              element: <Profile />
+            },
             {
               path: '/example',
               element: <div>예시 컴포넌트</div>
