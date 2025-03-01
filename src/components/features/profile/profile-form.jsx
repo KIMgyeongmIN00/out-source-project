@@ -2,39 +2,20 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { supabase } from '@/lib/apis/supabase.api';
 import { useState } from 'react';
-import { useEffect } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useAuthStore } from '@/stores/auth.store';
 
 export default function ProfileForm() {
   const [editMode, setEditMode] = useState(false);
   const [nickname, setNickname] = useState('');
-  const [userData, setUserData] = useState({});
   const queryClient = useQueryClient();
 
-  // 로그인 기능 추가시 사용
-  const isAuth = useAuthStore((state) => state.isAuthenticated);
-
-  useEffect(() => {
-    //  인증이 되었을 때만 유저 정보 가져오기
-    if (isAuth) {
-      const getUserInfo = async () => {
-        try {
-          const { data, error } = await supabase.from('users').select('*').eq('id', userData.id).single();
-          setUserData(data);
-          if (error) throw error;
-        } catch (error) {
-          console.error('유저 정보 가져오기 오류:', error);
-        }
-      };
-      getUserInfo();
-    }
-  }, [userData.id]);
+  const user = useAuthStore((state) => state.user);
 
   const updateProfileMutation = useMutation({
     mutationFn: async () => {
       try {
-        await supabase.from('users').update({ nickname }).eq('id', userData.id);
+        await supabase.from('users').update({ nickname }).eq('id', user.id);
       } catch (error) {
         console.error('유저 정보 수정 오류:', error);
         alert('수정 실패');
@@ -55,7 +36,7 @@ export default function ProfileForm() {
 
       if (!nickname.match(/^[a-zA-Z가-힣0-9]+$/)) return alert('닉네임은 영문, 한글, 숫자만 입력해주세요.');
 
-      updateProfileMutation.mutate({ nickname: userData.nickname });
+      updateProfileMutation.mutate({ nickname: user.nickname });
       alert('수정완료');
       setEditMode(!editMode);
     } else {
@@ -72,7 +53,7 @@ export default function ProfileForm() {
           {editMode ? (
             <Input value={nickname} onChange={(e) => setNickname(e.target.value)} />
           ) : (
-            <p>{`${userData.nickname} 님`}</p>
+            <p>{`${user.nickname} 님`}</p>
           )}
         </div>
       </div>
