@@ -13,7 +13,7 @@ import ProfileForm from '@/components/features/profile/profile-form';
 export default function Profile() {
   return (
     <div className="flex flex-col items-center gap-4 h-full">
-      <section className="flex flex-row border-2 border-primary rounded-lg w-full h-30">
+      <section className="flex flex-row border-2 border-primary rounded-lg w-full h-30 p-4">
         <ProfileForm />
       </section>
       <section className="flex flex-col border-2 border-primary rounded-lg p-4 w-full h-full">
