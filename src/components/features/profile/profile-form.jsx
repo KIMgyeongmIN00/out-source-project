@@ -48,7 +48,7 @@ export default function ProfileForm() {
 
     if (editMode) {
       if (!nickname.trim()) {
-        alert('닉네임을 입력해주세요!!!');
+        alert('닉네임을 입력해주세요.');
         return;
       }
 
@@ -78,11 +78,7 @@ export default function ProfileForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-row justify-between items-center w-full gap-4">
       <div className="flex flex-row items-center gap-4 ml-5">
-        <img
-          src="https://mblogthumb-phinf.pstatic.net/20150427_104/ninevincent_14301227921235lUld_JPEG/kakao_3.jpg?type=w420"
-          alt="프로필 이미지"
-          className="w-20 h-20 rounded-full"
-        />
+        <img src="/public/default_profile.png" alt="프로필 이미지" className="w-20 h-20 rounded-full" />
         <div>
           <p>반갑습니다</p>
           {editMode ? (
