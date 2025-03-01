@@ -8,8 +8,8 @@ import ModalMemo from './modal-memo';
 import { useState } from 'react';
 import Title from './modal-title';
 import { DialogDescription } from '@radix-ui/react-dialog';
-import { EDIT_MODE, SET_MODE } from '@/constants/constants';
 import useForm from '@/lib/hooks/useForm';
+import { EDIT_MODE, SET_MODE } from '@/constants/modal-constants';
 
 export default function Modal({ mode, btn1Text, btn2Text, btn3Text, onShareClick, onDeleteClick, onSubmitClick }) {
   const { formState, handleChange, handleChangeLocation, resetForm } = useForm({

@@ -1,5 +1,5 @@
 import Modal from '@/components/layouts/modal/modal';
-import { MAKE_PLAN_TEXT, SET_MODE } from '@/constants/constants';
+import { MAKE_PLAN_TEXT, SET_MODE } from '@/constants/modal-constants';
 
 export default function MakePlan() {
 

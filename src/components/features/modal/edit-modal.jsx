@@ -1,5 +1,5 @@
 import Modal from '@/components/layouts/modal/modal';
-import { DELETE_PLAN_TEXT, EDIT_MODE, SHARE_PLAN_TEXT, UPDATE_PLAN_TEXT } from '@/constants/constants';
+import { DELETE_PLAN_TEXT, SHARE_PLAN_TEXT, UPDATE_PLAN_TEXT } from '@/constants/modal-constants';
 
 export default function EditPlan({}) {
   function handleSharePlan(){};
