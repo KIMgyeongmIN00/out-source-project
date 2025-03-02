@@ -62,6 +62,7 @@ export default function Home() {
           {isOpen && <MapModal onCloseModal={handleCloseModal} />}
         </EventMarkerContainer>
       </Map>
+
       <MakePlan />
       <EditPlan />
     </>
