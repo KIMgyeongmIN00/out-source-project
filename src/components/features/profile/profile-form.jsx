@@ -26,7 +26,6 @@ export default function ProfileForm() {
 
       updateProfile({ id: user.id, nickname });
       alert('수정완료');
-      setEditMode(!editMode);
     }
     setEditMode((prev) => !prev);
   };
