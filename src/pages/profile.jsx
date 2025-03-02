@@ -9,8 +9,18 @@ import {
   PaginationPrevious
 } from '@/components/ui/pagination';
 import ProfileForm from '@/components/features/profile/profile-form';
+import useGetAllPlansQuery from '@/lib/hooks/use-get-all-plans-usequery';
 
 export default function Profile() {
+  const { plans, isPending, isError } = useGetAllPlansQuery();
+
+  if (isPending) {
+    return <div>계획 불러오는 중...</div>;
+  }
+
+  if (isError) {
+    return <div>계획 불러오기 실패</div>;
+  }
   return (
     <div className="flex flex-col items-center gap-4 h-full">
       <section className="flex flex-row border-2 border-primary rounded-lg w-full h-30 p-4">
@@ -33,17 +43,24 @@ export default function Profile() {
           <div className="flex flex-col justify-center">
             <h3 className="mb-4">지난 일정</h3>
             <ul className="flex flex-row flex-wrap gap-4">
-              <li className="flex flex-col justify-between border-2 border-primary p-4 rounded-lg w-[356px] h-[130px]">
-                <p className="mb-1 font-semibold">누군가와의 약속</p>
-                <p className="flex items-center gap-1">
-                  <MdOutlineAccessTime />
-                  날짜
-                </p>
-                <p className="flex items-center gap-1">
-                  <MdOutlineLocationOn />
-                  장소 주소
-                </p>
-              </li>
+              {plans.map((plan) => {
+                return (
+                  <li
+                    key={plan.id}
+                    className="flex flex-col justify-between border-2 border-primary p-4 rounded-lg w-[356px] h-[130px]"
+                  >
+                    <p className="mb-1 font-semibold">{plan.title}</p>
+                    <p className="flex items-center gap-1">
+                      <MdOutlineAccessTime />
+                      {plan.date}
+                    </p>
+                    <p className="flex items-center gap-1">
+                      <MdOutlineLocationOn />
+                      {plan.address}
+                    </p>
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <Pagination>

@@ -6,7 +6,7 @@ import useUpdateProfileMutation from '@/lib/hooks/use-update-profile-mutation';
 
 export default function ProfileForm() {
   const [editMode, setEditMode] = useState(false);
-  const [nickname, setNickname] = useState(user.nickname);
+  const [nickname, setNickname] = useState('');
 
   const user = useAuthStore((state) => state.user);
 
