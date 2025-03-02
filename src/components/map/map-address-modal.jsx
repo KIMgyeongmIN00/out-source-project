@@ -24,6 +24,9 @@ export function MapModal({ onCloseModal }) {
     '주소 정보 없음';
 
   const fullAddress = addressData?.documents[0]?.address?.address_name || '상세 주소 정보 없음';
+  useEffect(() => {
+    console.log('!', fullAddress);
+  }, [fullAddress]);
 
   return (
     <div className="absolute left-20 transform -translate-x-1/2 -top-34 w-80 bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden z-50">
@@ -38,7 +41,7 @@ export function MapModal({ onCloseModal }) {
               locationName
             )}
           </h3>
-          {isAuth && <MakePlan />}
+          {isAuth && <MakePlan fullAddress={fullAddress} />}
         </div>
 
         <button

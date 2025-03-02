@@ -1,7 +1,7 @@
 import { Textarea } from '@/components/ui/textarea';
 import { Pencil } from 'lucide-react';
 
-export default function ModalMemo({ memo, onMemoChange }) {
+export default function Memo({ memo, onMemoChange }) {
   return (
     <div>
       <label className="flex items-center gap-2 text-sm font-semibold text-primary">

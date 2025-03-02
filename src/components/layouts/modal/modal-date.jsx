@@ -1,7 +1,7 @@
 import { Input } from '@/components/ui/input';
 import { Calendar } from 'lucide-react';
 
-export default function ModalDate({ date, onDateChange }) {
+export default function Date({ date, onDateChange }) {
   return (
     <div>
       <label className="flex items-center gap-2 text-sm font-semibold text-primary">

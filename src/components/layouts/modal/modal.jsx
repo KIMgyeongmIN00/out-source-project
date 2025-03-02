@@ -2,24 +2,31 @@ import React from 'react';
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Trash2, PencilLine } from 'lucide-react';
-import ModalPosition from './modal-position';
-import ModalDate from './modal-date';
-import ModalMemo from './modal-memo';
-import { useState } from 'react';
 import Title from './modal-title';
 import { DialogDescription } from '@radix-ui/react-dialog';
 import useForm from '@/lib/hooks/useForm';
-import { EDIT_MODE, SET_MODE } from '@/constants/modal-constants';
+import { SET_MODE } from '@/constants/modal-constants';
+import Position from './modal-position';
+import Date from './modal-date';
+import Memo from './modal-memo';
 
-export default function Modal({ mode, shareText, deleteText, submitText, onShareClick, onDeleteClick, onSubmitClick }) {
-  const { formState, handleChange, handleChangeLocation, resetForm } = useForm({
-    location: { address: '', latitude: 0, longitude: 0 },
-    title: '카카오 취업하기',
+export default function Modal({
+  mode,
+  faddress,
+  shareText,
+  deleteText,
+  submitText,
+  onShareClick,
+  onDeleteClick,
+  onSubmitClick
+}) {
+  const { formState, handleChange, resetForm } = useForm({
+    title: '',
     date: '',
     memo: '일정 상세내용'
   });
 
-  const { location, title, date, memo } = formState;
+  const { title, date, memo } = formState;
 
   return (
     <Dialog isOpen={true}>
@@ -51,16 +58,16 @@ export default function Modal({ mode, shareText, deleteText, submitText, onShare
         )}
 
         {/* 일정 장소 */}
-        <ModalPosition address={location.address} onLocationChange={handleChangeLocation} />
+        <Position address={faddress} />
 
         {/* 일정 이름 */}
-        {(mode === SET_MODE || mode === EDIT_MODE) && <Title onTitleChange={handleChange} />}
+        <Title title={title} onTitleChange={handleChange} />
 
         {/* 일정 날짜 */}
-        <ModalDate date={date} onDateChange={handleChange} />
+        <Date date={date} onDateChange={handleChange} />
 
         {/* 일정 메모 */}
-        <ModalMemo memo={memo} onMemoChange={handleChange} />
+        <Memo memo={memo} onMemoChange={handleChange} />
 
         {/* 버튼 영역 */}
         <DialogFooter className="flex justify-end gap-2 mt-2">
