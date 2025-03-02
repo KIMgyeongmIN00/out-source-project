@@ -1,5 +1,7 @@
-import authValidate from '@/lib/utils/auth-validate.util';
 import { useState } from 'react';
+import { signUp } from '@/lib/apis/auth.api';
+import authValidate from '@/lib/utils/auth-validate.util';
+import sweetAlert from '@/lib/utils/sweet-alert.util';
 
 export default function useSignUpForm() {
   const [errorMessages, setErrorMessages] = useState({
@@ -27,11 +29,11 @@ export default function useSignUpForm() {
     }));
   }
 
-  function handleSubmitEvent(e) {
+  async function handleSubmitEvent(e) {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const formData = {
-      id: form.get('id'),
+      email: form.get('email'),
       password: form.get('password'),
       nickname: form.get('nickname')
     };
@@ -39,7 +41,9 @@ export default function useSignUpForm() {
     const invalidField = authValidate.checkInvalidForm(formData);
     if (invalidField) return setErrorMessage();
 
-    // TODO: 회원가입 api 연결
+    const { error } = await signUp(formData);
+    if (error && error.code === 'user_already_exists') return sweetAlert.error('회원가입 실패', '중복된 이메일입니다.');
+    else if (error) return sweetAlert.error('회원가입 실패', error.message);
   }
 
   return { errorMessages, handleBlurEvent, handleSubmitEvent };

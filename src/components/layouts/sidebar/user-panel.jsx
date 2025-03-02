@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import { MdOutlinePerson } from 'react-icons/md';
-import { MdLogout } from 'react-icons/md';
+import { MdOutlinePerson, MdLogout } from 'react-icons/md';
 import { Button } from '@/components/ui/button';
+import { signOut } from '@/lib/apis/auth.api';
 
 export default function UserPanel({ user }) {
   return (
-    <session className="flex flex-col gap-4 items-center">
+    <section className="flex flex-col gap-4 items-center">
       <img
         src={user.profileUrl || '/default_profile.png'}
         alt={`${user.nickname} 프로필`}
@@ -20,10 +20,10 @@ export default function UserPanel({ user }) {
             <MdOutlinePerson />
           </Link>
         </Button>
-        <Button size="icon">
+        <Button size="icon" onClick={() => signOut()}>
           <MdLogout />
         </Button>
       </div>
-    </session>
+    </section>
   );
 }
