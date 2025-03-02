@@ -1,28 +1,16 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { supabase } from '@/lib/apis/supabase.api';
 import { useState } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useAuthStore } from '@/stores/auth.store';
+import useUpdateProfileMutation from '@/lib/hooks/use-update-profile-mutation';
 
 export default function ProfileForm() {
   const [editMode, setEditMode] = useState(false);
-  const [nickname, setNickname] = useState('');
-  const queryClient = useQueryClient();
+  const [nickname, setNickname] = useState(user.nickname);
 
   const user = useAuthStore((state) => state.user);
 
-  const updateProfileMutation = useMutation({
-    mutationFn: async () => {
-      try {
-        await supabase.from('users').update({ nickname }).eq('id', user.id);
-      } catch (error) {
-        console.error('유저 정보 수정 오류:', error);
-        alert('수정 실패');
-      }
-    },
-    onSuccess: queryClient.invalidateQueries({ queryKey: ['users'] })
-  });
+  const { mutate: updateProfile } = useUpdateProfileMutation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,7 +24,7 @@ export default function ProfileForm() {
 
       if (!nickname.match(/^[a-zA-Z가-힣0-9]+$/)) return alert('닉네임은 영문, 한글, 숫자만 입력해주세요.');
 
-      updateProfileMutation.mutate({ nickname: user.nickname });
+      updateProfile({ id: user.id, nickname });
       alert('수정완료');
       setEditMode(!editMode);
     }
