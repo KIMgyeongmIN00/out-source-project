@@ -1,3 +1,5 @@
+import EditPlan from '@/components/features/modal/edit-modal';
+import MakePlan from '@/components/features/modal/write-modal';
 import { MAP_SCALE_50M } from '@/constants/map-scale';
 import { useKakaoMapQuery } from '@/lib/apis/map.api';
 import { useMapStore } from '@/stores/map.store';
@@ -48,16 +50,20 @@ export default function Home() {
   }
 
   return (
-    <Map
-      center={center}
-      className="w-full h-full"
-      level={MAP_SCALE_50M} // 확대 수준 (기본값: 50M)
-      keyboardShortcuts={true} // 키보드의 방향키와 +, – 키로 지도 이동,확대,축소 가능 여부 (기본값: false)
-      onClick={handleMapClick}
-    >
-      <EventMarkerContainer setIsOpen={setIsOpen}>
-        {isOpen && <MapModal onCloseModal={handleCloseModal} />}
-      </EventMarkerContainer>
-    </Map>
+    <>
+      <Map
+        center={center}
+        className="w-full h-full"
+        level={MAP_SCALE_50M} // 확대 수준 (기본값: 50M)
+        keyboardShortcuts={true} // 키보드의 방향키와 +, – 키로 지도 이동,확대,축소 가능 여부 (기본값: false)
+        onClick={handleMapClick}
+      >
+        <EventMarkerContainer setIsOpen={setIsOpen}>
+          {isOpen && <MapModal onCloseModal={handleCloseModal} />}
+        </EventMarkerContainer>
+      </Map>
+      <MakePlan />
+      <EditPlan />
+    </>
   );
 }
