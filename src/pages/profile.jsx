@@ -9,12 +9,12 @@ import {
   PaginationPrevious
 } from '@/components/ui/pagination';
 import ProfileForm from '@/components/features/profile/profile-form';
-import useRankTopAddressUseQuery from '@/lib/hooks/use-rank-top-address-query';
 import useGetAllPlansQuery from '@/lib/hooks/use-get-all-plans-query';
+import useRankAddressUseQuery from '@/lib/hooks/use-rank-address-query';
 
 export default function Profile() {
   const { plans, isPending, isError } = useGetAllPlansQuery();
-  const { topLocations } = useRankTopAddressUseQuery(plans);
+  const { topLocations } = useRankAddressUseQuery(plans);
 
   if (isPending) {
     return <div>계획 불러오는 중...</div>;
