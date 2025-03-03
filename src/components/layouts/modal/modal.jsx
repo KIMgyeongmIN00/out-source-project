@@ -24,7 +24,9 @@ export default function Modal({ mode, shareText, deleteText, submitText, onShare
   return (
     <Dialog isOpen={true}>
       <DialogTrigger asChild>
-        <Button variant="outline">{'Open'}</Button>
+        <Button variant="outline" size="sm">
+          일정 추가
+        </Button>
       </DialogTrigger>
       <DialogContent className="max-w-lg max-h-[500px] h-auto p-4 bg-card rounded-xl shadow-lg space-y-1 border border-border text-primary">
         {mode === SET_MODE ? (
