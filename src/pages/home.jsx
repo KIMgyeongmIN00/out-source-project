@@ -3,15 +3,18 @@ import MakePlan from '@/components/features/modal/write-modal';
 import { MAP_SCALE_50M } from '@/constants/map-scale';
 import { useKakaoMapQuery } from '@/lib/apis/map.api';
 import { useMapStore } from '@/stores/map.store';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
-import { EventMarkerContainer } from '@/components/map/map-marker';
-import { MapAddressModal } from '@/components/map/map-address-modal';
+import EventMarkerContainer from '@/components/map/map-marker';
+import MapAddressModal from '@/components/map/map-address-modal';
+import MapAddressSearch from '@/components/map/map-search';
 
 export default function Home() {
   const { kakaoMapLoading, kakaoMapError } = useKakaoMapQuery();
-  const { center, setTargetLocation } = useMapStore();
-  const [isInfoWindow, setIsInfoWindow] = useState(false);
+  const center = useMapStore((state) => state.center);
+  const setTargetLocation = useMapStore((state) => state.setTargetLocation);
+  const isInfoWindow = useMapStore((state) => state.isInfoWindow);
+  const CloseInfoWindow = useMapStore((state) => state.CloseInfoWindow);
 
   // 현재 사용자 위치 표시 or 거부시 디폴트 위치 표시
   useEffect(() => {
@@ -26,11 +29,11 @@ export default function Home() {
   function handleMapClick(_, mouseEvent) {
     const latlng = mouseEvent.latLng;
     setTargetLocation(latlng.getLat(), latlng.getLng());
-    setIsInfoWindow(true);
+    CloseInfoWindow(true);
   }
 
   function handleCloseModal() {
-    setIsInfoWindow(false);
+    CloseInfoWindow(false);
   }
 
   if (kakaoMapLoading) {
@@ -58,7 +61,9 @@ export default function Home() {
         keyboardShortcuts={true} // 키보드의 방향키와 +, – 키로 지도 이동,확대,축소 가능 여부 (기본값: false)
         onClick={handleMapClick}
       >
-        <EventMarkerContainer setIsInfoWindow={setIsInfoWindow}>
+        <MapAddressSearch />
+
+        <EventMarkerContainer>
           {isInfoWindow && <MapAddressModal onCloseModal={handleCloseModal} />}
         </EventMarkerContainer>
       </Map>

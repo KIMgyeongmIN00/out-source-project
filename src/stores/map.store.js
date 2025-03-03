@@ -7,9 +7,9 @@ const INITIAL_VALUE_LOCATION = {
 
 export const useMapStore = create((set) => ({
   center: INITIAL_VALUE_LOCATION,
+  isInfoWindow: false,
 
-  setTargetLocation: (lat, lng) =>
-    set(() => ({
-      center: { lat, lng }
-    }))
+  setTargetLocation: (lat, lng) => set({ center: { lat, lng } }),
+
+  CloseInfoWindow: (value) => set((state) => ({ isInfoWindow: value !== undefined ? value : !state.isInfoWindow }))
 }));
