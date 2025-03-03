@@ -9,8 +9,8 @@ import {
   PaginationPrevious
 } from '@/components/ui/pagination';
 import ProfileForm from '@/components/features/profile/profile-form';
-import useGetAllPlansQuery from '@/lib/hooks/use-get-all-plans-usequery';
 import useRankTopAddressUseQuery from '@/lib/hooks/use-rank-top-address-query';
+import useGetAllPlansQuery from '@/lib/hooks/use-get-all-plans-query';
 
 export default function Profile() {
   const { plans, isPending, isError } = useGetAllPlansQuery();
