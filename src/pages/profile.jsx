@@ -10,9 +10,11 @@ import {
 } from '@/components/ui/pagination';
 import ProfileForm from '@/components/features/profile/profile-form';
 import useGetAllPlansQuery from '@/lib/hooks/use-get-all-plans-usequery';
+import useRankTopAddressUseQuery from '@/lib/hooks/use-rank-top-address-query';
 
 export default function Profile() {
   const { plans, isPending, isError } = useGetAllPlansQuery();
+  const { topLocations } = useRankTopAddressUseQuery(plans);
 
   if (isPending) {
     return <div>계획 불러오는 중...</div>;
@@ -28,21 +30,25 @@ export default function Profile() {
       </section>
       <section className="flex flex-col border-2 border-primary rounded-lg p-4 w-full h-full">
         <div className="flex flex-col">
-          <h3 className="mb-4">이전에 많이 간 장소</h3>
+          <h3 className="mb-4">이전에 많이 간 장소(공동 순위일 경우, 먼저 생성된 항목을 우선)</h3>
           <ul className="flex flex-row flex-wrap gap-4">
-            <li className="border-2 border-primary p-4 rounded-lg w-[356px] h-[130px]">
-              <p className="flex items-center gap-1">
-                <MdOutlineLocationOn />
-                장소 주소1
-              </p>
-            </li>
+            {topLocations.map(([address]) => {
+              return (
+                <li key={address} className="border-2 border-primary p-4 rounded-lg w-[356px] h-[130px]">
+                  <p className="flex items-center gap-1">
+                    <MdOutlineLocationOn />
+                    {address}
+                  </p>
+                </li>
+              );
+            })}
           </ul>
         </div>
         <hr className="border-1 border-primary m-5" />
         <section className="flex flex-col h-full justify-between">
           <div className="flex flex-col justify-center">
             <h3 className="mb-4">지난 일정</h3>
-            <ul className="flex flex-row flex-wrap gap-4">
+            <ul className="flex flex-row flex-wrap gap-4 w-full">
               {plans.map((plan) => {
                 return (
                   <li
