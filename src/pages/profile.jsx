@@ -24,17 +24,17 @@ export default function Profile() {
     return <div>계획 불러오기 실패</div>;
   }
   return (
-    <div className="flex flex-col items-center gap-4 h-full">
+    <div className="flex flex-col items-center gap-4 h-full overflow-y-auto">
       <section className="flex flex-row border-2 border-primary rounded-lg w-full h-30 p-4">
         <ProfileForm />
       </section>
       <section className="flex flex-col border-2 border-primary rounded-lg p-4 w-full h-full">
         <div className="flex flex-col">
           <h3 className="mb-4">일정 많이 등록한 장소 TOP3 (공동 순위일 경우, 먼저 생성된 항목을 우선)</h3>
-          <ul className="flex flex-row flex-wrap gap-4">
+          <ul className="flex flex-row justify-start flex-wrap gap-4">
             {topLocations.map(([address]) => {
               return (
-                <li key={address} className="border-2 border-primary p-4 rounded-lg w-[356px] h-[130px]">
+                <li key={address} className="border-2 border-primary p-4 rounded-lg w-[430px] h-[130px]">
                   <p className="flex items-center gap-1">
                     <MdOutlineLocationOn />
                     {address}
@@ -53,7 +53,7 @@ export default function Profile() {
                 return (
                   <li
                     key={plan.id}
-                    className="flex flex-col justify-between border-2 border-primary p-4 rounded-lg w-[356px] h-[130px]"
+                    className="flex flex-col justify-between border-2 border-primary p-4 rounded-lg w-[430px] h-[130px]"
                   >
                     <p className="mb-1 font-semibold">{plan.title}</p>
                     <p className="flex items-center gap-1">
