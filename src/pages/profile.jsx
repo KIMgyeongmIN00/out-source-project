@@ -30,7 +30,7 @@ export default function Profile() {
       </section>
       <section className="flex flex-col border-2 border-primary rounded-lg p-4 w-full h-full">
         <div className="flex flex-col">
-          <h3 className="mb-4">이전에 많이 간 장소(공동 순위일 경우, 먼저 생성된 항목을 우선)</h3>
+          <h3 className="mb-4">일정 많이 등록한 장소 TOP3 (공동 순위일 경우, 먼저 생성된 항목을 우선)</h3>
           <ul className="flex flex-row flex-wrap gap-4">
             {topLocations.map(([address]) => {
               return (
