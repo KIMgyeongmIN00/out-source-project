@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-export default function useRankTopAddressUseQuery(plans) {
+export default function useRankAddressUseQuery(plans) {
   const { data: topLocations = [] } = useQuery({
     queryKey: ['topLocations', plans],
     queryFn: () => {
