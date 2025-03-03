@@ -34,7 +34,7 @@ export default function Profile() {
           <ul className="flex flex-row justify-start flex-wrap gap-4">
             {topLocations.map(([address]) => {
               return (
-                <li key={address} className="border-2 border-primary p-4 rounded-lg w-[430px] h-[130px]">
+                <li key={address} className="border-2 border-primary p-4 rounded-lg w-[430px] h-[60px]">
                   <p className="flex items-center gap-1">
                     <MdOutlineLocationOn />
                     {address}
@@ -53,7 +53,7 @@ export default function Profile() {
                 return (
                   <li
                     key={plan.id}
-                    className="flex flex-col justify-between border-2 border-primary p-4 rounded-lg w-[430px] h-[130px]"
+                    className="flex flex-col justify-between border-2 border-primary p-2 rounded-lg w-[430px] h-[100px]"
                   >
                     <p className="mb-1 font-semibold">{plan.title}</p>
                     <p className="flex items-center gap-1">
