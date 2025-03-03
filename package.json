@@ -10,9 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-alert-dialog": "^1.1.6",
+    "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-slot": "^1.1.2",
+    "@shadcn/ui": "^0.0.4",
     "@supabase/supabase-js": "^2.49.1",
     "@tailwindcss/vite": "^4.0.9",
     "@tanstack/react-query": "^5.66.9",
@@ -21,14 +22,13 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.476.0",
     "pnpm": "^10.5.2",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "18",
+    "react-dom": "18",
     "react-icons": "^5.5.0",
     "react-kakao-maps-sdk": "^1.1.27",
     "react-router-dom": "^7.2.0",
     "sweetalert2": "^11.17.2",
     "tailwind-merge": "^3.0.2",
-    "tailwindcss": "^4.0.9",
     "tailwindcss-animate": "^1.0.7",
     "zustand": "^5.0.3"
   },
@@ -37,11 +37,14 @@
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
     "eslint": "^9.21.0",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.0.9",
     "vite": "^6.2.0"
   },
   "packageManager": "pnpm@10.5.0+sha512.11106a5916c7406fe4b8cb8e3067974b8728f47308a4f5ac5e850304afa6f57e2847d7950dfe78877d8d36bfb401d381c4215db3a4c3547ffa63c14333a6fa51"
