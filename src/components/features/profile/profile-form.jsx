@@ -67,7 +67,7 @@ export default function ProfileForm() {
         </div>
       </div>
       {editMode ? (
-        <div className="flex gap-2">
+        <div className="flex flex-row gap-2">
           <Button onClick={cancelUpdate}>수정 취소</Button>
           <Button>수정 완료</Button>
         </div>
