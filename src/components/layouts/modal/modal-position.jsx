@@ -1,9 +1,12 @@
 import { EventMarkerContainer } from '@/components/map/map-marker';
+import { EventMarkerContainer } from '@/components/map/map-marker';
 import { Input } from '@/components/ui/input';
 import { MAP_SCALE_50M } from '@/constants/map-scale';
 import { useAuthStore } from '@/stores/auth.store';
 import { useMapStore } from '@/stores/map.store';
 import { MapPin } from 'lucide-react';
+import { useEffect } from 'react';
+import { Map } from 'react-kakao-maps-sdk';
 import { useEffect } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 
