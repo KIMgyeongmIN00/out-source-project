@@ -1,5 +1,6 @@
 import { Input } from '@/components/ui/input';
 import { Pencil } from 'lucide-react';
+import { useEffect } from 'react';
 
 export default function Title({ title, onTitleChange }) {
   return (

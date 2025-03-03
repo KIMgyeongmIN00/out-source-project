@@ -6,13 +6,13 @@ import Title from './modal-title';
 import { DialogDescription } from '@radix-ui/react-dialog';
 import useForm from '@/lib/hooks/useForm';
 import { SET_MODE } from '@/constants/modal-constants';
-import Position from './modal-position';
-import Date from './modal-date';
+import Location from './modal-position';
 import Memo from './modal-memo';
+import Date from './modal-date';
 
 export default function Modal({
   mode,
-  faddress,
+  Fulladdress,
   shareText,
   deleteText,
   submitText,
@@ -21,12 +21,13 @@ export default function Modal({
   onSubmitClick
 }) {
   const { formState, handleChange, resetForm } = useForm({
+    address: Fulladdress,
     title: '',
     date: '',
-    memo: '일정 상세내용'
+    memo: ''
   });
 
-  const { title, date, memo } = formState;
+  const { address, title, date, memo } = formState;
 
   return (
     <Dialog isOpen={true}>
@@ -58,7 +59,7 @@ export default function Modal({
         )}
 
         {/* 일정 장소 */}
-        <Position address={faddress} />
+        <Location address={address} />
 
         {/* 일정 이름 */}
         <Title title={title} onTitleChange={handleChange} />
@@ -91,7 +92,7 @@ export default function Modal({
           )}
           <Button
             className="bg-primary text-primary-foreground px-3 py-1.5 rounded-lg hover:bg-primary/90 text-sm"
-            onClick={onSubmitClick}
+            onClick={(e) => onSubmitClick(e, formState)}
           >
             {submitText}
           </Button>

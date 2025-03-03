@@ -8,10 +8,6 @@ import { useEffect } from 'react';
 export function MapModal({ onCloseModal }) {
   const { center } = useMapStore();
   const isAuth = useAuthStore((state) => state.isAuthenticated);
-  const userId = useAuthStore((state) => state.user.id);
-  useEffect(() => {
-    console.log('isAuth => ', isAuth, 'userId => ', userId);
-  }, [isAuth, userId]);
   const {
     data: addressData,
     isLoading: addressLoading,
@@ -24,10 +20,7 @@ export function MapModal({ onCloseModal }) {
     '주소 정보 없음';
 
   const fullAddress = addressData?.documents[0]?.address?.address_name || '상세 주소 정보 없음';
-  useEffect(() => {
-    console.log('!', fullAddress);
-  }, [fullAddress]);
-
+  console.log('지금!! ', fullAddress);
   return (
     <div className="absolute left-20 transform -translate-x-1/2 -top-34 w-80 bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden z-50">
       <div className="w-full py-3 px-4 bg-white border-b border-gray-200 flex items-center justify-between">
@@ -41,7 +34,7 @@ export function MapModal({ onCloseModal }) {
               locationName
             )}
           </h3>
-          {isAuth && <MakePlan fullAddress={fullAddress} />}
+          {isAuth && <MakePlan Fulladdress={fullAddress} />}
         </div>
 
         <button

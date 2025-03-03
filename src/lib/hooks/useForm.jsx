@@ -9,6 +9,7 @@ export default function useForm(initialState = {}) {
     setFormState((prev) => ({ ...prev, [name]: value }));
   };
 
+
   const resetForm = () => {
     setFormState(initialState);
   };

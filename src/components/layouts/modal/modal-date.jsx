@@ -9,8 +9,9 @@ export default function Date({ date, onDateChange }) {
       </label>
       <Input
         type="datetime-local"
+        name="date"
         value={date}
-        onChange={(e) => onDateChange(e.target.value)}
+        onChange={(e) => onDateChange(e)}
         className="mt-0.5 text-sm p-2"
       />
     </div>
