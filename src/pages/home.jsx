@@ -7,11 +7,12 @@ import { useState, useEffect } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 import { EventMarkerContainer } from '@/components/map/map-marker';
 import { MapModal } from '@/components/map/map-address-modal';
+import { Search } from 'lucide-react';
 
 export default function Home() {
   const { kakaoMapLoading, kakaoMapError } = useKakaoMapQuery();
   const { center, setTargetLocation } = useMapStore();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isInfoWindow, setIsInfoWindow] = useState(false);
 
   // 현재 사용자 위치 표시 or 거부시 디폴트 위치 표시
   useEffect(() => {
@@ -20,18 +21,18 @@ export default function Home() {
         setTargetLocation(position.coords.latitude, position.coords.longitude);
       });
     }
-  }, [setTargetLocation]);
+  }, []);
 
   // Map 컴포넌트 안의 내장 요소 mouseEvent 호출
-  const handleMapClick = (_, mouseEvent) => {
+  function handleMapClick(_, mouseEvent) {
     const latlng = mouseEvent.latLng;
     setTargetLocation(latlng.getLat(), latlng.getLng());
-    setIsOpen(true);
-  };
+    setIsInfoWindow(true);
+  }
 
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
+  function handleCloseModal() {
+    setIsInfoWindow(false);
+  }
 
   if (kakaoMapLoading) {
     return (
@@ -58,8 +59,8 @@ export default function Home() {
         keyboardShortcuts={true} // 키보드의 방향키와 +, – 키로 지도 이동,확대,축소 가능 여부 (기본값: false)
         onClick={handleMapClick}
       >
-        <EventMarkerContainer setIsOpen={setIsOpen}>
-          {isOpen && <MapModal onCloseModal={handleCloseModal} />}
+        <EventMarkerContainer setIsInfoWindow={setIsInfoWindow}>
+          {isInfoWindow && <MapModal onCloseModal={handleCloseModal} />}
         </EventMarkerContainer>
       </Map>
 

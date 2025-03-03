@@ -1,7 +1,7 @@
 import { useMapStore } from '@/stores/map.store';
 import { MapMarker, useMap } from 'react-kakao-maps-sdk';
 
-export function EventMarkerContainer({ setIsOpen, children }) {
+export function EventMarkerContainer({ setIsInfoWindow, children }) {
   const { center } = useMapStore();
 
   const map = useMap();
@@ -16,7 +16,7 @@ export function EventMarkerContainer({ setIsOpen, children }) {
           }
           map.panTo(marker.getPosition());
 
-          setIsOpen((prev) => !prev);
+          setIsInfoWindow((prev) => !prev);
         }}
       >
         {children}
