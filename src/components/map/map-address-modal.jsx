@@ -3,7 +3,6 @@ import { useMapStore } from '@/stores/map.store';
 import { X } from 'lucide-react';
 import MakePlan from '../features/modal/write-modal';
 import { useAuthStore } from '@/stores/auth.store';
-import { useEffect } from 'react';
 
 export function MapModal({ onCloseModal }) {
   const { center } = useMapStore();
@@ -20,7 +19,6 @@ export function MapModal({ onCloseModal }) {
     '주소 정보 없음';
 
   const fullAddress = addressData?.documents[0]?.address?.address_name || '상세 주소 정보 없음';
-  console.log('지금!! ', fullAddress);
   return (
     <div className="absolute left-20 transform -translate-x-1/2 -top-34 w-80 bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden z-50">
       <div className="w-full py-3 px-4 bg-white border-b border-gray-200 flex items-center justify-between">

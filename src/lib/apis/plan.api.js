@@ -1,5 +1,4 @@
-import axiosApi from "@api/axios.api";
-
+import { axiosApi } from '@api/axios.api'; //default가 아닌 named import로 가져오고 있으므로 {}로 묶어주기!
 
 // 내 계획 갯수대로 가져오기 (무한 스크롤은 추가 로직으로 limit와 offset 알고리즘 구현 해야됩니다...)
 // limit => 얼만큼? , offset => 어디서 부터?
@@ -9,8 +8,8 @@ export async function fetchMyPlansLimit(myId, limit, offset) {
       select: '*',
       user_id: `eq.${myId}`,
       limit,
-      offset,
-    },
+      offset
+    }
   });
   return response;
 }
@@ -21,8 +20,8 @@ export async function fetchPlacePlan(address, myId) {
     params: {
       select: '*',
       address: `eq.${address}`,
-      user_id: `eq.${myId}`,
-    },
+      user_id: `eq.${myId}`
+    }
   });
   return response;
 }
@@ -32,8 +31,8 @@ export async function fetchSharePlan(planId) {
   const response = await axiosApi.get('plans', {
     params: {
       select: '*',
-      id: `eq.${planId}`,
-    },
+      id: `eq.${planId}`
+    }
   });
   return response;
 }
@@ -42,16 +41,16 @@ export async function fetchSharePlan(planId) {
 export async function createData(data) {
   const response = await axiosApi.post('plans', data);
   return response;
-};
+}
 
 // 계획 수정하기
 export async function updateData(id, data) {
   const response = await axiosApi.patch(`plans?id=eq.${id}`, data);
   return response;
-};
+}
 
 // 계획 삭제하기
 export async function deleteData(id) {
   const response = await axiosApi.delete(`plans?id=eq.${id}`);
   return response;
-};
+}

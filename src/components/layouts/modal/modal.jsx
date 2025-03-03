@@ -21,13 +21,12 @@ export default function Modal({
   onSubmitClick
 }) {
   const { formState, handleChange, resetForm } = useForm({
-    address: Fulladdress,
     title: '',
     date: '',
     memo: ''
   });
 
-  const { address, title, date, memo } = formState;
+  const { title, date, memo } = formState;
 
   return (
     <Dialog isOpen={true}>
@@ -59,7 +58,7 @@ export default function Modal({
         )}
 
         {/* 일정 장소 */}
-        <Location address={address} />
+        <Location address={Fulladdress} />
 
         {/* 일정 이름 */}
         <Title title={title} onTitleChange={handleChange} />
@@ -92,7 +91,10 @@ export default function Modal({
           )}
           <Button
             className="bg-primary text-primary-foreground px-3 py-1.5 rounded-lg hover:bg-primary/90 text-sm"
-            onClick={(e) => onSubmitClick(e, formState)}
+            onClick={(e) => {
+              onSubmitClick(e, formState);
+              resetForm();
+            }}
           >
             {submitText}
           </Button>
