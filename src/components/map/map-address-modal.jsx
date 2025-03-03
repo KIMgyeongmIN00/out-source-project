@@ -2,7 +2,7 @@ import { useKakaoAddressQuery } from '@/lib/apis/map.api';
 import { useMapStore } from '@/stores/map.store';
 import { X } from 'lucide-react';
 
-export function MapModal({ onCloseModal }) {
+export function MapAddressModal({ onCloseModal }) {
   const { center } = useMapStore();
 
   const {

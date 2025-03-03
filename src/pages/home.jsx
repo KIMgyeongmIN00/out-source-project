@@ -6,8 +6,7 @@ import { useMapStore } from '@/stores/map.store';
 import { useState, useEffect } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 import { EventMarkerContainer } from '@/components/map/map-marker';
-import { MapModal } from '@/components/map/map-address-modal';
-import { Search } from 'lucide-react';
+import { MapAddressModal } from '@/components/map/map-address-modal';
 
 export default function Home() {
   const { kakaoMapLoading, kakaoMapError } = useKakaoMapQuery();
@@ -60,7 +59,7 @@ export default function Home() {
         onClick={handleMapClick}
       >
         <EventMarkerContainer setIsInfoWindow={setIsInfoWindow}>
-          {isInfoWindow && <MapModal onCloseModal={handleCloseModal} />}
+          {isInfoWindow && <MapAddressModal onCloseModal={handleCloseModal} />}
         </EventMarkerContainer>
       </Map>
 
