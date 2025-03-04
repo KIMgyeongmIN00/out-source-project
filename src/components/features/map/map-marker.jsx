@@ -3,7 +3,7 @@ import { MapMarker, useMap } from 'react-kakao-maps-sdk';
 
 export default function EventMarkerContainer({ children }) {
   const center = useMapStore((state) => state.center);
-  const CloseInfoWindow = useMapStore((state) => state.CloseInfoWindow);
+  const toggleInfoWindow = useMapStore((state) => state.toggleInfoWindow);
 
   const map = useMap();
 
@@ -12,12 +12,11 @@ export default function EventMarkerContainer({ children }) {
       <MapMarker
         position={center}
         onClick={(marker) => {
-          {
-            /* 마커 클릭 시 중심으로 이동 */
-          }
+          // 마커 클릭 시 중심으로 이동
           map.panTo(marker.getPosition());
 
-          CloseInfoWindow();
+          // 정보 창 토글
+          toggleInfoWindow();
         }}
       >
         {children}

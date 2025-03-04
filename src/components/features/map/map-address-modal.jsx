@@ -4,6 +4,7 @@ import { X } from 'lucide-react';
 
 export default function MapAddressModal({ onCloseModal }) {
   const center = useMapStore((state) => state.center);
+  const selectedAddress = useMapStore((state) => state.selectedAddress);
 
   const {
     data: addressData,
@@ -14,9 +15,14 @@ export default function MapAddressModal({ onCloseModal }) {
   const locationName =
     addressData?.documents[0]?.road_address?.building_name ||
     addressData?.documents[0]?.address?.address_name ||
+    selectedAddress?.place ||
     '주소 정보 없음';
 
-  const fullAddress = addressData?.documents[0]?.address?.address_name || '상세 주소 정보 없음';
+  const fullAddress =
+    addressData?.documents[0]?.road_address?.address_name ||
+    addressData?.documents[0]?.address?.address_name ||
+    selectedAddress?.address ||
+    '상세 주소 정보 없음';
 
   return (
     <div className="absolute left-20 transform -translate-x-1/2 -top-34 w-80 bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden z-50">

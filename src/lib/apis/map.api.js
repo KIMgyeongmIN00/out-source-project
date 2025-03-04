@@ -8,6 +8,7 @@ export function useKakaoMapQuery() {
   const [loading, error] = useKakaoLoader({
     appkey: KAKAO_MAP_API_KEY
   });
+
   return { kakaoMapLoading: loading, kakaoMapError: error };
 }
 
@@ -24,5 +25,24 @@ export function useKakaoAddressQuery(lat, lng) {
         throw error;
       }
     }
+  });
+}
+
+// 키워드로 장소 검색
+export function useKakaoSearchQuery(latLng, search) {
+  return useQuery({
+    queryKey: ['kakaoAddress', latLng?.lat, latLng?.lng, search],
+    queryFn: async () => {
+      if (!search || !latLng?.lat || !latLng?.lng) return null;
+      try {
+        const response = await axiosMap.get(`search/keyword.json?x=${latLng.lng}&y=${latLng.lat}&query=${search}`);
+        if (!response?.data) throw new Error('응답 데이터가 없습니다.');
+        return response.data;
+      } catch (error) {
+        console.error('Registration error:', error);
+        throw error;
+      }
+    },
+    enabled: !!search && !!latLng?.lat && !!latLng?.lng
   });
 }

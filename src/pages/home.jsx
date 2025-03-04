@@ -5,35 +5,43 @@ import { useKakaoMapQuery } from '@/lib/apis/map.api';
 import { useMapStore } from '@/stores/map.store';
 import { useEffect } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
-import EventMarkerContainer from '@/components/map/map-marker';
-import MapAddressModal from '@/components/map/map-address-modal';
-import MapAddressSearch from '@/components/map/map-search';
+import EventMarkerContainer from '@/components/features/map/map-marker';
+import MapAddressModal from '@/components/features/map/map-address-modal';
+import MapAddressSearch from '@/components/features/map/map-search';
+import { useState } from 'react';
 
 export default function Home() {
   const { kakaoMapLoading, kakaoMapError } = useKakaoMapQuery();
+  const [currentLocation, setCurrentLocation] = useState('');
+
   const center = useMapStore((state) => state.center);
   const setTargetLocation = useMapStore((state) => state.setTargetLocation);
   const isInfoWindow = useMapStore((state) => state.isInfoWindow);
-  const CloseInfoWindow = useMapStore((state) => state.CloseInfoWindow);
+  const toggleInfoWindow = useMapStore((state) => state.toggleInfoWindow);
 
   // 현재 사용자 위치 표시 or 거부시 디폴트 위치 표시
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setTargetLocation(position.coords.latitude, position.coords.longitude);
-      });
+    if (!navigator.geolocation) {
+      console.error('Geolocation을 지원하지 않는 브라우저입니다.');
+      return;
     }
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      setTargetLocation(position.coords.latitude, position.coords.longitude);
+      setCurrentLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
+    });
   }, []);
 
-  // Map 컴포넌트 안의 내장 요소 mouseEvent 호출
+  // 지도 클릭 시 호출되는 함수
   function handleMapClick(_, mouseEvent) {
     const latlng = mouseEvent.latLng;
     setTargetLocation(latlng.getLat(), latlng.getLng());
-    CloseInfoWindow(true);
+    toggleInfoWindow(true);
   }
 
+  // 모달 닫기 함수
   function handleCloseModal() {
-    CloseInfoWindow(false);
+    toggleInfoWindow(false);
   }
 
   if (kakaoMapLoading) {
@@ -61,11 +69,11 @@ export default function Home() {
         keyboardShortcuts={true} // 키보드의 방향키와 +, – 키로 지도 이동,확대,축소 가능 여부 (기본값: false)
         onClick={handleMapClick}
       >
-        <MapAddressSearch />
-
         <EventMarkerContainer>
           {isInfoWindow && <MapAddressModal onCloseModal={handleCloseModal} />}
         </EventMarkerContainer>
+
+        <MapAddressSearch currentLocation={currentLocation} />
       </Map>
 
       <MakePlan />

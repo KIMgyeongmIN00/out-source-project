@@ -1,6 +1,6 @@
 import { Search, X } from 'lucide-react';
 
-export default function MapSearchBox({ isSearchBox, setIsSearchBox, mapSearch, setMapSearch, clearSearch }) {
+export default function MapSearchBox({ isSearchBox, setIsSearchBox, mapSearch, setMapSearch, onClearSearch }) {
   return (
     <div
       className={`flex items-center rounded-full overflow-hidden bg-white transition-all duration-300 ease-in-out shadow-lg ${
@@ -25,7 +25,7 @@ export default function MapSearchBox({ isSearchBox, setIsSearchBox, mapSearch, s
       />
 
       {mapSearch && isSearchBox && (
-        <button onClick={clearSearch} className="flex items-center justify-center h-11 w-11 flex-shrink-0">
+        <button onClick={onClearSearch} className="flex items-center justify-center h-11 w-11 flex-shrink-0">
           <X className="h-5 w-5 text-gray-600" />
         </button>
       )}
