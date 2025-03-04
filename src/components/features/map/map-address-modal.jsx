@@ -13,15 +13,15 @@ export default function MapAddressModal({ onCloseModal }) {
   } = useKakaoAddressQuery(center.lat, center.lng);
 
   const locationName =
+    selectedAddress?.place ||
     addressData?.documents[0]?.road_address?.building_name ||
     addressData?.documents[0]?.address?.address_name ||
-    selectedAddress?.place ||
     '주소 정보 없음';
 
   const fullAddress =
+    selectedAddress?.address ||
     addressData?.documents[0]?.road_address?.address_name ||
     addressData?.documents[0]?.address?.address_name ||
-    selectedAddress?.address ||
     '상세 주소 정보 없음';
 
   return (
