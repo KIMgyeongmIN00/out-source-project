@@ -21,6 +21,7 @@ export default function MakePlan({ fullAddress, center }) {
   const { title, date, memo } = formState;
   function handlePlanSubmit(e, formData) {
     createData({ ...formData, address: fullAddress, user_id: userId, ...center }); //DB에 일정 추가하는 로직
+    resetForm();
   }
   return (
     <Dialog isOpen={true}>
@@ -46,10 +47,7 @@ export default function MakePlan({ fullAddress, center }) {
         <DialogFooter className="flex justify-end gap-2 mt-2">
           <Button
             className="bg-primary text-primary-foreground px-3 py-1.5 rounded-lg hover:bg-primary/90 text-sm"
-            onClick={(e) => {
-              handlePlanSubmit(e, formState);
-              resetForm();
-            }}
+            onClick={handlePlanSubmit}
           >
             {MAKE_PLAN_TEXT}
           </Button>

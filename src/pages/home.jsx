@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 import { EventMarkerContainer } from '@/components/map/map-marker';
 import { MapModal } from '@/components/map/map-address-modal';
-import { PlansMarker } from '@/components/map/map-plans-marker';
+import { MapPlansMarker} from '@/components/map/map-plans-marker';
 
 export default function Home() {
   const { kakaoMapLoading, kakaoMapError } = useKakaoMapQuery();
@@ -63,7 +63,7 @@ export default function Home() {
         <EventMarkerContainer setIsOpen={setIsAddressModalOpen}>
           {isAddressModalOpen && <MapModal onCloseModal={handleCloseAddressModal} />}
         </EventMarkerContainer>
-        <PlansMarker setIsOpen={setIsPlanModalOpen} />
+        <MapPlansMarker setIsOpen={setIsPlanModalOpen} />
       </Map>
     </>
   );

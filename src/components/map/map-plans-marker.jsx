@@ -3,21 +3,20 @@ import { fetchMyPlansLimit } from '@/lib/apis/plan.api';
 import { useAuthStore } from '@/stores/auth.store';
 import { useState, useEffect } from 'react';
 import useGetAllPlansQuery from '@/lib/hooks/use-get-all-plans-query';
+import { useMemo } from 'react';
 
-export function PlansMarker({ setIsOpen, children }) {
-  const [plansLocation, setPlansLoaction] = useState([]);
+export function MapPlansMarker({ setIsOpen, children }) {
   const { plans, isPending, isError } = useGetAllPlansQuery();
   const map = useMap();
   const userId = useAuthStore((state) => state.user.id);
-  useEffect(() => {
-    if (plans && Array.isArray(plans)) {
-      const newData = plans.map((plan) => ({
-        ...plan,
-        latlng: { lat: plan.lat, lng: plan.lng }
-      }));
-      setPlansLoaction(newData);
-    }
-  }, [plans, userId]);
+
+  const plansLocation = useMemo(() => {
+    if (!plans) return [];
+    return plans.map((plan) => ({
+      ...plan,
+      latlng: { lat: plan.lat, lng: plan.lng }
+    }));
+  }, [plans]);
 
   if (isPending) {
     return <></>;

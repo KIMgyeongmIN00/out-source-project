@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
 
 const initialUserValue = {
   id: '',
@@ -9,7 +8,6 @@ const initialUserValue = {
 };
 
 export const useAuthStore = create((set) => {
-  //로그인 유지를 위해서 zustand/middleware persist사용용
   return {
     user: null,
     isAuthenticated: false,
