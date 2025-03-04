@@ -19,11 +19,11 @@ export default function ProfileForm() {
     setImage(file);
   }
 
-  function uploadFile() {
+  function handleUploadFile() {
     uploadProfileImage(image);
   }
 
-  function cancelUpdate() {
+  function handleCancelUpdate() {
     setEditMode((prev) => !prev);
   }
 
@@ -55,7 +55,7 @@ export default function ProfileForm() {
             <>
               <div className="flex flex-row items-center gap-2">
                 <Input type="file" onChange={handleImageChange} required />
-                <Button type="button" onClick={uploadFile}>
+                <Button type="button" onClick={handleUploadFile}>
                   이미지 업로드
                 </Button>
               </div>
@@ -68,7 +68,7 @@ export default function ProfileForm() {
       </div>
       {editMode ? (
         <div className="flex flex-row gap-2">
-          <Button onClick={cancelUpdate}>수정 취소</Button>
+          <Button onClick={handleCancelUpdate}>수정 취소</Button>
           <Button>수정 완료</Button>
         </div>
       ) : (
