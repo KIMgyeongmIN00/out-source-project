@@ -9,6 +9,7 @@ import { SET_MODE } from '@/constants/modal-constants';
 import Location from './modal-position';
 import Memo from './modal-memo';
 import Date from './modal-date';
+import { useState } from 'react';
 
 export default function Modal({
   mode,
@@ -27,7 +28,7 @@ export default function Modal({
   });
 
   const { title, date, memo } = formState;
-
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <Dialog isOpen={true}>
       <DialogTrigger asChild>
@@ -47,12 +48,11 @@ export default function Modal({
               <DialogTitle className="text-lg font-semibold text-primary">{title}</DialogTitle>
               <DialogDescription />
 
-              {/* 이걸 누르면 제목 수정이 가능하도록 추후 계발 예정정 */}
+              {/* 이걸 누르면 제목 수정이 가능하도록 추후 계발 예정 */}
               <button className="text-gray-500 hover:text-red-500">
                 <PencilLine className="w-5 h-5" />
               </button>
 
-              {/* 닫기(X) 버튼 */}
             </div>
           </DialogHeader>
         )}

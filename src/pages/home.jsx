@@ -1,5 +1,3 @@
-import EditPlan from '@/components/features/modal/edit-modal';
-import MakePlan from '@/components/features/modal/write-modal';
 import { MAP_SCALE_50M } from '@/constants/map-scale';
 import { useKakaoMapQuery } from '@/lib/apis/map.api';
 import { useMapStore } from '@/stores/map.store';
@@ -7,12 +5,12 @@ import { useState, useEffect } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 import { EventMarkerContainer } from '@/components/map/map-marker';
 import { MapModal } from '@/components/map/map-address-modal';
+import { PlansMarker } from '@/components/map/map-plans-marker';
 
 export default function Home() {
   const { kakaoMapLoading, kakaoMapError } = useKakaoMapQuery();
   const { center, setTargetLocation } = useMapStore();
   const [isOpen, setIsOpen] = useState(false);
-
   // 현재 사용자 위치 표시 or 거부시 디폴트 위치 표시
   useEffect(() => {
     if (navigator.geolocation) {
@@ -61,10 +59,8 @@ export default function Home() {
         <EventMarkerContainer setIsOpen={setIsOpen}>
           {isOpen && <MapModal onCloseModal={handleCloseModal} />}
         </EventMarkerContainer>
-      </Map>
-
-      <MakePlan />
-      <EditPlan />
+{        <PlansMarker />
+}      </Map>
     </>
   );
 }

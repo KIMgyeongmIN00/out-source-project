@@ -32,7 +32,7 @@ export function MapModal({ onCloseModal }) {
               locationName
             )}
           </h3>
-          {isAuth && <MakePlan Fulladdress={fullAddress} />}
+          {isAuth && <MakePlan Fulladdress={fullAddress} center={center} />}
         </div>
 
         <button
