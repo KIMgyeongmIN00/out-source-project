@@ -14,7 +14,7 @@ export const axiosApi = axios.create({
 });
 
 export const axiosMap = axios.create({
-  baseURL: 'https://dapi.kakao.com/v2/local/geo/',
+  baseURL: 'https://dapi.kakao.com/v2/local/',
   headers: {
     Authorization: `KakaoAK ${KAKAO_MAP_REST_KEY}`
   }
