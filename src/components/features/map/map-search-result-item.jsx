@@ -5,6 +5,7 @@ export default memo(MapSearchResultItem);
 
 function MapSearchResultItem({ result, selectedResult, onSelectResult }) {
   return (
+    // 클릭시 해당 장소로 이동
     <li
       onClick={() => onSelectResult(result)}
       className={`p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 ${

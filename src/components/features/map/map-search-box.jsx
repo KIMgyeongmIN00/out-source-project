@@ -7,6 +7,7 @@ export default function MapSearchBox({ isSearchBox, setIsSearchBox, mapSearch, s
         isSearchBox ? 'w-full' : 'w-11'
       }`}
     >
+      {/** 돋보기 누르면 검색창 토글 기능 */}
       <button
         onClick={() => setIsSearchBox((prev) => !prev)}
         className="flex items-center justify-center h-11 w-11 flex-shrink-0"
@@ -24,6 +25,7 @@ export default function MapSearchBox({ isSearchBox, setIsSearchBox, mapSearch, s
         disabled={!isSearchBox}
       />
 
+      {/** 검색어 있으면 X 표시 */}
       {mapSearch && isSearchBox && (
         <button onClick={onClearSearch} className="flex items-center justify-center h-11 w-11 flex-shrink-0">
           <X className="h-5 w-5 text-gray-600" />

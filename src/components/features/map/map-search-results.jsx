@@ -10,6 +10,7 @@ export default function MapSearchResults({
 }) {
   return (
     <>
+      {/** 검색 결과 창 */}
       {isSearchBox && searchResults.length > 0 && (
         <div className="mt-2 bg-white rounded-lg shadow-lg overflow-hidden max-h-[60vh] overflow-y-auto">
           <div className="p-2 border-b border-gray-100">
