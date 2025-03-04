@@ -7,7 +7,13 @@ export default function ModalDate({ date, onDateChange }) {
       <label className="flex items-center gap-2 text-sm font-semibold text-primary">
         <Calendar className="w-4 h-4 text-primary" /> 일정 날짜
       </label>
-      <Input type="datetime-local" name="date" value={date} onChange={onDateChange} className="mt-0.5 text-sm p-2" />
+      <Input
+        type="datetime-local"
+        name="date"
+        value={date}
+        onChange={onDateChange}
+        className="mt-0.5 text-sm p-2"
+      />
     </div>
   );
 }
