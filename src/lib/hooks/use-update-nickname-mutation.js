@@ -6,7 +6,8 @@ import { QueryKeys } from '@/constants/query-keys';
 
 export default function useUpdateNicknameMutation() {
   const queryClient = useQueryClient();
-  const { setUser, user } = useAuthStore((state) => state);
+  const user = useAuthStore((state) => state.user);
+  const setUser = useAuthStore((state) => state.setUser);
 
   return useMutation({
     mutationFn: async ({ id, nickname }) => {
