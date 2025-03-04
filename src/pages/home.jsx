@@ -13,7 +13,6 @@ export default function Home() {
   const { kakaoMapLoading, kakaoMapError } = useKakaoMapQuery();
 
   const [currentLocation, setCurrentLocation] = useState('');
-  const [isPlanModalOpen, setIsPlanModalOpen] = useState(false);
 
   const center = useMapStore((state) => state.center);
   const setTargetLocation = useMapStore((state) => state.setTargetLocation);
@@ -40,9 +39,6 @@ export default function Home() {
     toggleInfoWindow(true);
   }
 
-  const handleClosePlanModal = () => {
-    setIsPlanModalOpen(false);
-  };
 
   if (kakaoMapLoading) {
     return (
@@ -71,7 +67,7 @@ export default function Home() {
       >
         <EventMarkerContainer>{isInfoWindow && <MapAddressModal />}</EventMarkerContainer>
         <MapAddressSearch currentLocation={currentLocation} />
-        <MapPlansMarker setIsOpen={setIsPlanModalOpen} />
+        <MapPlansMarker />
       </Map>
     </>
   );

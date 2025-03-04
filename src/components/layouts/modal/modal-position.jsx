@@ -13,7 +13,7 @@ export default function ModalPosition({ address }) {
         <MapPin className="w-4 h-4 text-primary" />
         일정장소
       </label>
-      <Input type="text" name="address" value={address} className="mt-0.5 text-sm p-2" />
+      <Input type="text" name="address" value={address} readOnly className="mt-0.5 text-sm p-2" />
       <div className="w-full h-20 rounded-xl overflow-hidden border border-border">
         <Map
           center={center}
