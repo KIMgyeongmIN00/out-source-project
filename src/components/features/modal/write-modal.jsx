@@ -25,7 +25,6 @@ export default function MakePlan({ Fulladdress, center }) {
     createData({ ...formData, address: Fulladdress, user_id: userId,...center }); //DB에 일정 추가하는 로직
   }
   useEffect(() => {
-    console.log('필요해', center);
   }, [center]);
   return (
     <Dialog isOpen={true}>
