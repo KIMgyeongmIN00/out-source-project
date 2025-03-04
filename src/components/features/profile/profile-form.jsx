@@ -2,9 +2,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import { useAuthStore } from '@/stores/auth.store';
-import useUpdateProfileMutation from '@/lib/hooks/use-update-profile-mutation';
-import useUploadImageMutation from '@/lib/hooks/use-upload-image-mutation';
 import sweetAlert from '@/lib/utils/sweet-alert.util';
+import useUpdateProfileMutation from '@/lib/hooks/use-update-profile-mutation';
 
 export default function ProfileForm() {
   const [editMode, setEditMode] = useState(false);
@@ -13,26 +12,13 @@ export default function ProfileForm() {
   const user = useAuthStore((state) => state.user);
 
   const { mutate: updateProfile } = useUpdateProfileMutation();
-  const { mutate: uploadProfileImage } = useUploadImageMutation();
 
   function handleImageChange(e) {
     const file = e.target.files[0];
     setImage(file);
   }
 
-  function handleUploadFile() {
-    if (!image) {
-      sweetAlert.error('업로드할 이미지를 선택해주세요.');
-      return;
-    }
-    uploadProfileImage({ image, userId: user.id });
-  }
-
-  function handleCancelUpdate() {
-    setEditMode((prev) => !prev);
-  }
-
-  const handleSubmit = (e) => {
+  function handleUploadFile(e) {
     e.preventDefault();
 
     if (editMode) {
@@ -42,14 +28,18 @@ export default function ProfileForm() {
 
       if (!nickname.match(/^[a-zA-Z가-힣0-9]+$/)) return sweetAlert.warn('닉네임은 영문, 한글, 숫자만 입력해주세요.');
 
-      updateProfile({ id: user.id, nickname });
+      updateProfile({ image, userId: user.id, nickname });
       sweetAlert.success('수정완료');
     }
     setEditMode((prev) => !prev);
-  };
+  }
+
+  function handleCancelUpdate() {
+    setEditMode((prev) => !prev);
+  }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-row justify-between items-center w-full gap-4">
+    <form onSubmit={handleUploadFile} className="flex flex-row justify-between items-center w-full gap-4">
       <div className="flex flex-row items-center gap-4 ml-5">
         <img
           src={user.profileUrl}
@@ -62,9 +52,6 @@ export default function ProfileForm() {
             <>
               <div className="flex flex-row items-center gap-2">
                 <Input type="file" onChange={handleImageChange} required />
-                <Button type="button" onClick={handleUploadFile}>
-                  이미지 업로드
-                </Button>
               </div>
               <Input
                 value={nickname}
