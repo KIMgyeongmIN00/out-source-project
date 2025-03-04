@@ -10,10 +10,18 @@ export default function useUpdateProfileMutation() {
       const { error: imageUploadError } = await supabase.storage.from('images').upload(`/profile/${image.name}`, image);
       if (imageUploadError) {
         sweetAlert.error('프로필 이미지 업로드 중 오류가 발생했습니다.');
+        console.error(imageUploadError.message);
         return;
       }
 
-      const profileImageURL = supabase.storage.from('images').getPublicUrl(`profile/${image.name}`).data.publicUrl;
+      const { data: profileImageURL, error: getPublicUrlError } = supabase.storage
+        .from('images')
+        .getPublicUrl(`profile/${image.name}`).data.publicUrl;
+      if (getPublicUrlError) {
+        sweetAlert.error('프로필 이미지 URL 가져오기 중 오류가 발생했습니다.');
+        console.error(getPublicUrlError.message);
+        return;
+      }
 
       const { error: updateImageUrlError } = await supabase
         .from('users')
@@ -21,11 +29,14 @@ export default function useUpdateProfileMutation() {
         .eq('id', userId);
       if (updateImageUrlError) {
         sweetAlert.error('프로필 이미지 URL업데이트 중 오류가 발생했습니다.');
+        console.error(updateImageUrlError.message);
+        return;
       }
 
       const { error: updateNicknameError } = await supabase.from('users').update({ nickname }).eq('id', userId);
       if (updateNicknameError) {
         sweetAlert.error('프로필 수정 중 오류가 발생했습니다.');
+        console.error(updateNicknameError.message);
         return;
       }
 
