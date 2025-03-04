@@ -33,10 +33,10 @@ export default function Profile() {
       <section className="flex flex-col border-2 border-primary rounded-lg p-4 w-full h-auto">
         <div className="flex flex-col">
           <h3 className="mb-4">일정 많이 등록한 장소 TOP3 (공동 순위일 경우, 먼저 생성된 항목을 우선)</h3>
-          <ul className="flex flex-row justify-start flex-wrap gap-4">
+          <ul className="grid grid-cols-3 justify-start flex-wrap gap-4">
             {topLocations.map(([address]) => {
               return (
-                <li key={address} className="border-2 border-primary p-4 rounded-lg w-[430px] h-[60px]">
+                <li key={address} className="border-2 border-primary p-4 rounded-lg h-[60px]">
                   <p className="flex items-center gap-1">
                     <MdOutlineLocationOn />
                     {address}
@@ -49,7 +49,7 @@ export default function Profile() {
         <hr className="border-1 border-primary m-5" />
         <section className="flex flex-col h-full justify-between">
           <div className="flex flex-col justify-center">
-            <h3 className="mb-4 text-center">지난 일정</h3>
+            <h3 className="mb-4">지난 일정</h3>
             <div className="">
               <ul className="grid grid-cols-3 flex-row flex-wrap gap-4 w-full">
                 {isLoading ? (
