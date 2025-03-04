@@ -31,18 +31,18 @@ export function useKakaoAddressQuery(lat, lng) {
 // 키워드로 장소 검색
 export function useKakaoSearchQuery(latLng, search) {
   return useQuery({
-    queryKey: ['kakaoAddress', latLng?.lat, latLng?.lng, search],
+    queryKey: ['kakaoAddress', latLng.lat, latLng.lng, search],
     queryFn: async () => {
-      if (!search || !latLng?.lat || !latLng?.lng) return null;
+      if (!search || !latLng.lat || !latLng.lng) return null;
       try {
         const response = await axiosMap.get(`search/keyword.json?x=${latLng.lng}&y=${latLng.lat}&query=${search}`);
-        if (!response?.data) throw new Error('응답 데이터가 없습니다.');
+        if (!response.data) throw new Error('응답 데이터가 없습니다.');
         return response.data;
       } catch (error) {
         console.error('Registration error:', error);
         throw error;
       }
     },
-    enabled: !!search && !!latLng?.lat && !!latLng?.lng
+    enabled: !!search && !!latLng.lat && !!latLng.lng
   });
 }

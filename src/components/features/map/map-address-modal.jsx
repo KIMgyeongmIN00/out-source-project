@@ -2,9 +2,10 @@ import { useKakaoAddressQuery } from '@/lib/apis/map.api';
 import { useMapStore } from '@/stores/map.store';
 import { X } from 'lucide-react';
 
-export default function MapAddressModal({ onCloseModal }) {
+export default function MapAddressModal() {
   const center = useMapStore((state) => state.center);
   const selectedAddress = useMapStore((state) => state.selectedAddress);
+  const toggleInfoWindow = useMapStore((state) => state.toggleInfoWindow);
 
   const {
     data: addressData,
@@ -37,7 +38,7 @@ export default function MapAddressModal({ onCloseModal }) {
           )}
         </h3>
         <button
-          onClick={onCloseModal}
+          onClick={() => toggleInfoWindow(false)}
           className="p-1 rounded-full hover:bg-gray-100 transition-colors"
           aria-label="닫기"
         >

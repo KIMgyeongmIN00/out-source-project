@@ -39,11 +39,6 @@ export default function Home() {
     toggleInfoWindow(true);
   }
 
-  // 모달 닫기 함수
-  function handleCloseModal() {
-    toggleInfoWindow(false);
-  }
-
   if (kakaoMapLoading) {
     return (
       <div className="w-full h-full flex items-center justify-center bg-gray-100">
@@ -69,9 +64,7 @@ export default function Home() {
         keyboardShortcuts={true} // 키보드의 방향키와 +, – 키로 지도 이동,확대,축소 가능 여부 (기본값: false)
         onClick={handleMapClick}
       >
-        <EventMarkerContainer>
-          {isInfoWindow && <MapAddressModal onCloseModal={handleCloseModal} />}
-        </EventMarkerContainer>
+        <EventMarkerContainer>{isInfoWindow && <MapAddressModal />}</EventMarkerContainer>
 
         <MapAddressSearch currentLocation={currentLocation} />
       </Map>

@@ -9,7 +9,8 @@ function MapSearchResultItem({ result, selectedResult, onSelectResult }) {
     <li
       onClick={() => onSelectResult(result)}
       className={`p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 ${
-        selectedResult?.id === result.id ? 'bg-blue-50' : ''
+        selectedResult?.id === result.id && 'bg-blue-50'
+      }
       }`}
     >
       <div className="flex items-start">
