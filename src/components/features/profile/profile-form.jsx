@@ -51,7 +51,11 @@ export default function ProfileForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-row justify-between items-center w-full gap-4">
       <div className="flex flex-row items-center gap-4 ml-5">
-        <img src={user.profileUrl} alt="프로필 이미지" className="w-20 h-20 border-2 border-primary rounded-full" />
+        <img
+          src={user.profileUrl}
+          alt="프로필 이미지"
+          className="w-20 h-20 border-2 object-cover border-primary rounded-full"
+        />
         <div>
           <p>반갑습니다</p>
           {editMode ? (
