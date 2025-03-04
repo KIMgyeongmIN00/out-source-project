@@ -1,10 +1,12 @@
 import { useKakaoAddressQuery } from '@/lib/apis/map.api';
 import { useMapStore } from '@/stores/map.store';
 import { X } from 'lucide-react';
+import MakePlan from '../features/modal/write-modal';
+import { useAuthStore } from '@/stores/auth.store';
 
 export function MapModal({ onCloseModal }) {
   const { center } = useMapStore();
-
+  const isAuth = useAuthStore((state) => state.isAuthenticated);
   const {
     data: addressData,
     isLoading: addressLoading,
@@ -17,19 +19,22 @@ export function MapModal({ onCloseModal }) {
     '주소 정보 없음';
 
   const fullAddress = addressData?.documents[0]?.address?.address_name || '상세 주소 정보 없음';
-
   return (
     <div className="absolute left-20 transform -translate-x-1/2 -top-34 w-80 bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden z-50">
       <div className="w-full py-3 px-4 bg-white border-b border-gray-200 flex items-center justify-between">
-        <h3 className="text-base font-semibold text-gray-800 truncate max-w-[85%]">
-          {addressLoading ? (
-            <span className="text-gray-500">주소를 불러오는 중...</span>
-          ) : addressError ? (
-            <span className="text-red-500">주소 불러오기 실패</span>
-          ) : (
-            locationName
-          )}
-        </h3>
+        <div className="flex text-center">
+          <h3 className="text-base font-semibold text-gray-800 truncate max-w-[85%]">
+            {addressLoading ? (
+              <span className="text-gray-500">주소를 불러오는 중...</span>
+            ) : addressError ? (
+              <span className="text-red-500">주소 불러오기 실패</span>
+            ) : (
+              locationName
+            )}
+          </h3>
+          {isAuth && <MakePlan fullAddress={fullAddress} center={center} />}
+        </div>
+
         <button
           onClick={onCloseModal}
           className="p-1 rounded-full hover:bg-gray-100 transition-colors"

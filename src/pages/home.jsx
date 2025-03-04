@@ -1,5 +1,3 @@
-import EditPlan from '@/components/features/modal/edit-modal';
-import MakePlan from '@/components/features/modal/write-modal';
 import { MAP_SCALE_50M } from '@/constants/map-scale';
 import { useKakaoMapQuery } from '@/lib/apis/map.api';
 import { useMapStore } from '@/stores/map.store';
@@ -7,13 +5,13 @@ import { useState, useEffect } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 import { EventMarkerContainer } from '@/components/map/map-marker';
 import { MapModal } from '@/components/map/map-address-modal';
+import { MapPlansMarker} from '@/components/map/map-plans-marker';
 
 export default function Home() {
   const { kakaoMapLoading, kakaoMapError } = useKakaoMapQuery();
   const { center, setTargetLocation } = useMapStore();
-  const [isOpen, setIsOpen] = useState(false);
-
-  // 현재 사용자 위치 표시 or 거부시 디폴트 위치 표시
+  const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
+  const [isPlanModalOpen, setIsPlanModalOpen] = useState(false); // 현재 사용자 위치 표시 or 거부시 디폴트 위치 표시
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -22,15 +20,19 @@ export default function Home() {
     }
   }, [setTargetLocation]);
 
-  // Map 컴포넌트 안의 내장 요소 mouseEvent 호출
+  // 지도 클릭 시 주소 모달 열기
   const handleMapClick = (_, mouseEvent) => {
     const latlng = mouseEvent.latLng;
     setTargetLocation(latlng.getLat(), latlng.getLng());
-    setIsOpen(true);
+    setIsAddressModalOpen(true);
   };
 
-  const handleCloseModal = () => {
-    setIsOpen(false);
+  const handleCloseAddressModal = () => {
+    setIsAddressModalOpen(false);
+  };
+
+  const handleClosePlanModal = () => {
+    setIsPlanModalOpen(false);
   };
 
   if (kakaoMapLoading) {
@@ -58,13 +60,11 @@ export default function Home() {
         keyboardShortcuts={true} // 키보드의 방향키와 +, – 키로 지도 이동,확대,축소 가능 여부 (기본값: false)
         onClick={handleMapClick}
       >
-        <EventMarkerContainer setIsOpen={setIsOpen}>
-          {isOpen && <MapModal onCloseModal={handleCloseModal} />}
+        <EventMarkerContainer setIsOpen={setIsAddressModalOpen}>
+          {isAddressModalOpen && <MapModal onCloseModal={handleCloseAddressModal} />}
         </EventMarkerContainer>
+        <MapPlansMarker setIsOpen={setIsPlanModalOpen} />
       </Map>
-
-      <MakePlan />
-      <EditPlan />
     </>
   );
 }
