@@ -7,7 +7,6 @@ import { useEffect } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 
 export default function Position({ address }) {
-  //추후 위도 경도까지 받을 예정
   useEffect(() => {}, [address]);
   const { center } = useMapStore();
   return (
