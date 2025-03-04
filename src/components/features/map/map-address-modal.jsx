@@ -1,12 +1,15 @@
 import { useKakaoAddressQuery } from '@/lib/apis/map.api';
 import { useMapStore } from '@/stores/map.store';
 import { X } from 'lucide-react';
-import MakePlan from '../features/modal/write-modal';
+import MakePlan from '../modal/write-modal';
 import { useAuthStore } from '@/stores/auth.store';
 
-export function MapModal({ onCloseModal }) {
-  const { center } = useMapStore();
+export default function MapAddressModal() {
+  const center = useMapStore((state) => state.center);
+  const selectedAddress = useMapStore((state) => state.selectedAddress);
+  const toggleInfoWindow = useMapStore((state) => state.toggleInfoWindow);
   const isAuth = useAuthStore((state) => state.isAuthenticated);
+
   const {
     data: addressData,
     isLoading: addressLoading,
@@ -14,11 +17,17 @@ export function MapModal({ onCloseModal }) {
   } = useKakaoAddressQuery(center.lat, center.lng);
 
   const locationName =
+    selectedAddress?.place ||
     addressData?.documents[0]?.road_address?.building_name ||
     addressData?.documents[0]?.address?.address_name ||
     '주소 정보 없음';
 
-  const fullAddress = addressData?.documents[0]?.address?.address_name || '상세 주소 정보 없음';
+  const fullAddress =
+    selectedAddress?.address ||
+    addressData?.documents[0]?.road_address?.address_name ||
+    addressData?.documents[0]?.address?.address_name ||
+    '상세 주소 정보 없음';
+
   return (
     <div className="absolute left-20 transform -translate-x-1/2 -top-34 w-80 bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden z-50">
       <div className="w-full py-3 px-4 bg-white border-b border-gray-200 flex items-center justify-between">
@@ -36,7 +45,7 @@ export function MapModal({ onCloseModal }) {
         </div>
 
         <button
-          onClick={onCloseModal}
+          onClick={() => toggleInfoWindow(false)}
           className="p-1 rounded-full hover:bg-gray-100 transition-colors"
           aria-label="닫기"
         >

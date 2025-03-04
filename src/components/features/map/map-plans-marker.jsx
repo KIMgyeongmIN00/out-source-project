@@ -19,7 +19,7 @@ export function MapPlansMarker({ setIsOpen, children }) {
   }, [plans]);
 
   if (isPending) {
-    return <div>로딩중입니다.</div>
+    return <div>로딩중입니다.</div>;
   }
   if (isError) {
     return <div>데이터를 불러오는 중 오류가 생겼습니다.</div>;
