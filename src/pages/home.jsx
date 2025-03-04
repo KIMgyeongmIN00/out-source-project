@@ -1,34 +1,44 @@
 import { MAP_SCALE_50M } from '@/constants/map-scale';
 import { useKakaoMapQuery } from '@/lib/apis/map.api';
 import { useMapStore } from '@/stores/map.store';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
-import { EventMarkerContainer } from '@/components/map/map-marker';
-import { MapModal } from '@/components/map/map-address-modal';
-import { MapPlansMarker } from '@/components/map/map-plans-marker';
+import EventMarkerContainer from '@/components/features/map/map-marker';
+import MapAddressModal from '@/components/features/map/map-address-modal';
+import MapAddressSearch from '@/components/features/map/map-search';
+import { useState } from 'react';
+import { MapPlansMarker } from '@/components/features/map/map-plans-marker';
 
 export default function Home() {
   const { kakaoMapLoading, kakaoMapError } = useKakaoMapQuery();
-  const { center, setTargetLocation } = useMapStore();
-  const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setTargetLocation(position.coords.latitude, position.coords.longitude);
-      });
-    }
-  }, [setTargetLocation]);
 
-  // 지도 클릭 시 주소 모달 열기
-  const handleMapClick = (_, mouseEvent) => {
+  const [currentLocation, setCurrentLocation] = useState('');
+
+  const center = useMapStore((state) => state.center);
+  const setTargetLocation = useMapStore((state) => state.setTargetLocation);
+  const isInfoWindow = useMapStore((state) => state.isInfoWindow);
+  const toggleInfoWindow = useMapStore((state) => state.toggleInfoWindow);
+
+  // 현재 사용자 위치 표시 or 거부시 디폴트 위치 표시
+  useEffect(() => {
+    if (!navigator.geolocation) {
+      console.error('Geolocation을 지원하지 않는 브라우저입니다.');
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      setTargetLocation(position.coords.latitude, position.coords.longitude);
+      setCurrentLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
+    });
+  }, []);
+
+  // 지도 클릭 시 호출되는 함수
+  function handleMapClick(_, mouseEvent) {
     const latlng = mouseEvent.latLng;
     setTargetLocation(latlng.getLat(), latlng.getLng());
-    setIsAddressModalOpen(true);
-  };
+    toggleInfoWindow(true);
+  }
 
-  const handleCloseAddressModal = () => {
-    setIsAddressModalOpen(false);
-  };
 
   if (kakaoMapLoading) {
     return (
@@ -55,9 +65,8 @@ export default function Home() {
         keyboardShortcuts={true} // 키보드의 방향키와 +, – 키로 지도 이동,확대,축소 가능 여부 (기본값: false)
         onClick={handleMapClick}
       >
-        <EventMarkerContainer setIsOpen={setIsAddressModalOpen}>
-          {isAddressModalOpen && <MapModal onCloseModal={handleCloseAddressModal} />}
-        </EventMarkerContainer>
+        <EventMarkerContainer>{isInfoWindow && <MapAddressModal />}</EventMarkerContainer>
+        <MapAddressSearch currentLocation={currentLocation} />
         <MapPlansMarker />
       </Map>
     </>
