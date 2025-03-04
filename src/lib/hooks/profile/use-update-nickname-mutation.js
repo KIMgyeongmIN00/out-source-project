@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { supabase } from '../apis/supabase.api';
-import sweetAlert from '../utils/sweet-alert.util';
 import { useAuthStore } from '@/stores/auth.store';
 import { QueryKeys } from '@/constants/query-keys';
+import { supabase } from '@/lib/apis/supabase.api';
+import sweetAlert from '@/lib/utils/sweet-alert.util';
 
 export default function useUpdateNicknameMutation() {
   const queryClient = useQueryClient();

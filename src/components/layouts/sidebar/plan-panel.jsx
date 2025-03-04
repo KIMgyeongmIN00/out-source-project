@@ -1,6 +1,6 @@
 import { Fragment, useCallback, useRef } from 'react';
 import PlanCard from '@/components/layouts/sidebar/plan-card';
-import useGetUpcomingPlansQuery from '@/lib/hooks/use-get-upcoming-plans-query.hook';
+import useGetUpcomingPlansQuery from '@/lib/hooks/sidebar/use-get-upcoming-plans-query.hook';
 
 export default function PlanPanel({ id }) {
   const { pages, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetUpcomingPlansQuery(id);

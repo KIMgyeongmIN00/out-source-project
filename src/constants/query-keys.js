@@ -3,10 +3,7 @@ export const QueryKeys = {
   QUERY_KEY_USERS: ['users'],
   QUERY_KEY_PLANS: ['plans'],
   PLAN: (planId) => ['plan', planId],
-  ALLPLANS: (userId) => ['allPlans', userId]
-};
-export const QueryTime = {
-  ONE_MINUTE: 1000 * 60,
-  FIVE_MINUTE: 1000 * 300,
-  TEN_MINUTE: 1000 * 600
+  ALLPLANS: (userId) => ['all-plans', userId],
+  PAGED_PLANS: (page) => ['paged-plans', page],
+  PINNED_PLAN: (planId) => ['pinned-plan', planId]
 };

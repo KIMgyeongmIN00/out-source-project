@@ -1,4 +1,4 @@
-import { QueryKeys } from "@/constants/query-key";
+import { QueryKeys } from "@/constants/query-keys";
 import { QueryTime } from "@/constants/query-time";
 import { useAuthStore } from "@/stores/auth.store";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -13,20 +13,18 @@ export function usePagePlans() {
   const [page, setPage] = useState(1);
   const [pageGroup, setPageGroup] = useState(0);
 
-  // `useQuery`로 totalCount와 데이터 가져오기
+
   const { data, isLoading } = useQuery({
     queryKey: QueryKeys.PAGED_PLANS(page),
     queryFn: () => fetchMyPlansLimit(myId, PAGE_SIZE, (page - 1) * PAGE_SIZE),
     keepPreviousData: true,
     select: (data) => ({
       plans: data.data,
-      totalCount: data.headers
+      totalCount: data.headers // totalCount 데이터 가져오기
     }),
     staleTime: QueryTime.TWO_MINUTE,
     cacheTime: QueryTime.FIVE_MINUTE
   });
-
-
 
   const totalCount = data?.totalCount['content-range']?.split('/')[1] || 0;
   const totalPages = totalCount ? Math.ceil(totalCount / PAGE_SIZE) : 1;

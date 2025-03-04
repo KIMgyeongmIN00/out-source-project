@@ -1,7 +1,7 @@
 import SignErrorPanel from '@/components/layouts/sidebar/sign-error-panel';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import useSignUpForm from '@/lib/hooks/use-sign-up-form.hook';
+import useSignUpForm from '@/lib/hooks/sidebar/use-sign-up-form.hook';
 
 export default function SignUpForm() {
   const { errorMessages, handleBlurEvent, handleSubmitEvent } = useSignUpForm();
