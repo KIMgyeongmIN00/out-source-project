@@ -15,6 +15,16 @@ export default function useAuthSubScriber() {
           nickname: session.user.user_metadata.nickname,
           profileUrl: session.user.user_metadata.profile_url
         });
+        async function setAuth() {
+          const { data } = await supabase.from('users').select().eq('id', session.user.id).single();
+          setUser({
+            id: session.user.id,
+            email: session.user.email,
+            nickname: data.nickname,
+            profileUrl: data.profile_url
+          });
+        }
+        setAuth();
       } else {
         clearUser();
       }
