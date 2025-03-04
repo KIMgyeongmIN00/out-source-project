@@ -9,7 +9,7 @@ const initialUserValue = {
 
 export const useAuthStore = create((set) => {
   return {
-    user: null,
+    user: initialUserValue,
     isAuthenticated: false,
     setUser: (user) => set({ user, isAuthenticated: !!user }),
     clearUser: () => set({ user: initialUserValue, isAuthenticated: false })
