@@ -9,7 +9,8 @@ export const axiosApi = axios.create({
   headers: {
     apikey: supabaseKey,
     Authorization: `Bearer ${supabaseKey}`,
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    Prefer: "count=exact"
   }
 });
 

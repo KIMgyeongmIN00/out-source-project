@@ -1,4 +1,4 @@
-import axiosApi from "@api/axios.api";
+import { axiosApi } from "./axios.api";
 
 
 // 내 계획 갯수대로 가져오기 (무한 스크롤은 추가 로직으로 limit와 offset 알고리즘 구현 해야됩니다...)
@@ -11,7 +11,8 @@ export async function fetchMyPlansLimit(myId, limit, offset) {
       limit,
       offset,
     },
-  });
+  }); console.log("fetch", response.headers)
+
   return response;
 }
 

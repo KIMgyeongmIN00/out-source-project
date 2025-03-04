@@ -1,4 +1,4 @@
-const QueryTime = {
+export const QueryTime = {
   ONE_MINUTE: 1000 * 60,
   TWO_MINUTE: 1000 * 120,
   THREE_MINUTE: 1000 * 180,
