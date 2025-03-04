@@ -55,3 +55,14 @@ export async function deleteData(id) {
   const response = await axiosApi.delete(`plans?id=eq.${id}`);
   return response;
 };
+
+// 통계용 모든 내 계획 가져오지
+export async function fetchAllMyPlans(myId) {
+  const response = await axiosApi.get('plans', {
+    params: {
+      select: '*',
+      user_id: `eq.${myId}`,
+    },
+  });
+  return response;
+}
