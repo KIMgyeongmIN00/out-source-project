@@ -22,11 +22,9 @@ export default function MakePlan({ Fulladdress, center }) {
 
   const { title, date, memo } = formState;
   async function handlePlanSubmit(e, formData) {
-    createData({ ...formData, address: Fulladdress, user_id: userId,...center }); //DB에 일정 추가하는 로직
+    createData({ ...formData, address: Fulladdress, user_id: userId, ...center }); //DB에 일정 추가하는 로직
   }
-  useEffect(() => {
-    console.log('필요해', center);
-  }, [center]);
+
   return (
     <Dialog isOpen={true}>
       <DialogTrigger asChild>

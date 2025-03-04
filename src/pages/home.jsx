@@ -6,6 +6,7 @@ import { Map } from 'react-kakao-maps-sdk';
 import { EventMarkerContainer } from '@/components/map/map-marker';
 import { MapModal } from '@/components/map/map-address-modal';
 import { PlansMarker } from '@/components/map/map-plans-marker';
+import { PlanMarkerModal } from '@/components/map/map-plans-modal';
 
 export default function Home() {
   const { kakaoMapLoading, kakaoMapError } = useKakaoMapQuery();
@@ -59,8 +60,8 @@ export default function Home() {
         <EventMarkerContainer setIsOpen={setIsOpen}>
           {isOpen && <MapModal onCloseModal={handleCloseModal} />}
         </EventMarkerContainer>
-{        <PlansMarker />
-}      </Map>
+        <PlansMarker setIsOpen={setIsOpen} />
+      </Map>
     </>
   );
 }
