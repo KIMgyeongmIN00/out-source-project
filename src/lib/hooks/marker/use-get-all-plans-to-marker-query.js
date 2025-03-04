@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { QueryKeys, QueryTime } from '@/constants/query-keys';
-import { fetchAllMyPlans } from '../apis/plan.api';
+import { QueryKeys } from '@/constants/query-keys';
+import { fetchAllMyPlans } from '../../apis/plan.api';
+import { QueryTime } from '@/constants/query-time';
 
 export default function useGetAllPlansToMarKerQuery(userId) {
   const {

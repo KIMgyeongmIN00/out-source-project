@@ -2,7 +2,7 @@ import { MapMarker, useMap } from 'react-kakao-maps-sdk';
 import { useState } from 'react';
 import { useMemo } from 'react';
 import { PlanMarkerModal } from './map-plans-modal';
-import useGetAllPlansToMarKerQuery from '@/lib/hooks/use-get-all-plans-to-marker-query';
+import useGetAllPlansToMarKerQuery from '@/lib/hooks/marker/use-get-all-plans-to-marker-query';
 import { useAuthStore } from '@/stores/auth.store';
 
 export function MapPlansMarker() {

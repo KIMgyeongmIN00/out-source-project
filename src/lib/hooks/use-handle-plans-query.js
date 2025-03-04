@@ -1,7 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { deleteData, updateData } from '@api/plan.api';
-import { QueryKeys, QueryTime } from '@/constants/query-keys';
+import { QueryKeys } from '@/constants/query-keys';
+import { QueryTime } from '@/constants/query-time';
 
 export function usePlanQuery(userId, planId) {
   const queryClient = useQueryClient();
@@ -27,7 +28,7 @@ export function usePlanQuery(userId, planId) {
       });
       queryClient.invalidateQueries({ queryKey: QueryKeys.PLAN(planId) });
 
-      queryClient.invalidateQueries({ queryKey: ['position'] });
+      queryClient.invalidateQueries({ queryKey: QueryKeys.PINNED_PLAN(planId) });
     }
   });
 
@@ -42,7 +43,7 @@ export function usePlanQuery(userId, planId) {
       queryClient.invalidateQueries({ queryKey: QueryKeys.PLAN(planId) });
       // 전체 플랜 목록 쿼리도 무효화하여 업데이트
       queryClient.invalidateQueries({ queryKey: QueryKeys.ALLPLANS(userId) });
-      queryClient.invalidateQueries({ queryKey: ['position'] });
+      queryClient.invalidateQueries({ queryKey: QueryKeys.PINNED_PLAN(planId) });
     }
   });
 

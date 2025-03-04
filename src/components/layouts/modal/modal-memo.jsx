@@ -11,7 +11,7 @@ export default function ModalMemo({ memo, onMemoChange }) {
         name="memo"
         value={memo}
         onChange={onMemoChange}
-        className="mt-0.5 text-sm p-2 h-[60px]"
+        className="mt-0.5 text-sm p-2 overflow-y-auto max-h-[60px] h-full break-all resize-none"
       />
     </div>
   );
