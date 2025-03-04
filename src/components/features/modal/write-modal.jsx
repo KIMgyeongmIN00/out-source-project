@@ -1,18 +1,16 @@
 import { MAKE_PLAN_TEXT } from '@/constants/modal-constants';
 import { createData } from '@/lib/apis/plan.api';
 import { useAuthStore } from '@/stores/auth.store';
-import React from 'react';
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { DialogDescription } from '@radix-ui/react-dialog';
 import useForm from '@/lib/hooks/useForm';
-import Title from '@/components/layouts/modal/modal-title';
-import Date from '@/components/layouts/modal/modal-date';
-import Memo from '@/components/layouts/modal/modal-memo';
-import Location from '@/components/layouts/modal/modal-position';
-import { useEffect } from 'react';
+import ModalPosition from '@/components/layouts/modal/modal-position';
+import ModalTitle from '@/components/layouts/modal/modal-title';
+import ModalDate from '@/components/layouts/modal/modal-date';
+import ModalMemo from '@/components/layouts/modal/modal-memo';
 
-export default function MakePlan({ Fulladdress, center }) {
+export default function MakePlan({ fullAddress, center }) {
   const userId = useAuthStore((state) => state.user.id); // 유저정보:id가져오기
   const { formState, handleChange, resetForm } = useForm({
     title: '',
@@ -21,8 +19,8 @@ export default function MakePlan({ Fulladdress, center }) {
   });
 
   const { title, date, memo } = formState;
-  async function handlePlanSubmit(e, formData) {
-    createData({ ...formData, address: Fulladdress, user_id: userId, ...center }); //DB에 일정 추가하는 로직
+  function handlePlanSubmit(e, formData) {
+    createData({ ...formData, address: fullAddress, user_id: userId, ...center }); //DB에 일정 추가하는 로직
   }
   return (
     <Dialog isOpen={true}>
@@ -37,13 +35,13 @@ export default function MakePlan({ Fulladdress, center }) {
           <DialogDescription />
         </DialogHeader>
         {/* 일정 장소 */}
-        <Location address={Fulladdress} />
+        <ModalPosition address={fullAddress} />
         {/* 일정 이름 */}
-        <Title title={title} onTitleChange={handleChange} />
+        <ModalTitle title={title} onTitleChange={handleChange} />
         {/* 일정 날짜 */}
-        <Date date={date} onDateChange={handleChange} />
+        <ModalDate date={date} onDateChange={handleChange} />
         {/* 일정 메모 */}
-        <Memo memo={memo} onMemoChange={handleChange} />
+        <ModalMemo memo={memo} onMemoChange={handleChange} />
         {/* 버튼 영역 */}
         <DialogFooter className="flex justify-end gap-2 mt-2">
           <Button

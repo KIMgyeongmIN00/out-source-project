@@ -3,12 +3,10 @@ import { Input } from '@/components/ui/input';
 import { MAP_SCALE_50M } from '@/constants/map-scale';
 import { useMapStore } from '@/stores/map.store';
 import { MapPin } from 'lucide-react';
-import { useEffect } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 
-export default function Position({ address }) {
-  useEffect(() => {}, [address]);
-  const { center } = useMapStore();
+export default function ModalPosition({ address }) {
+  const center = useMapStore((state) => state.center);
   return (
     <div>
       <label className="flex items-center gap-2 text-sm font-semibold text-primary">
