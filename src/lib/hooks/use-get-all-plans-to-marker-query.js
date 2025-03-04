@@ -14,7 +14,8 @@ export default function useGetAllPlansToMarKerQuery(userId) {
       return response.data;
     },
     staleTime: QueryTime.FIVE_MINUTE,
-    cacheTime: QueryTime.TEN_MINUTE
+    cacheTime: QueryTime.TEN_MINUTE,
+    enabled: Boolean(userId) // userId가 있을 때만 쿼리 실행
   });
 
   return { allPlans, allPlansError, allPlansLoading };

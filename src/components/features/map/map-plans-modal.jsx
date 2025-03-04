@@ -1,5 +1,5 @@
 import { X } from 'lucide-react';
-import EditPlan from '../features/modal/edit-modal';
+import EditPlan from '../modal/edit-modal';
 
 export function PlanMarkerModal({ onCloseModal, plan }) {
   function formatPlanDate(dateString) {
