@@ -9,8 +9,14 @@ import ModalPosition from '@/components/layouts/modal/modal-position';
 import ModalTitle from '@/components/layouts/modal/modal-title';
 import ModalDate from '@/components/layouts/modal/modal-date';
 import ModalMemo from '@/components/layouts/modal/modal-memo';
+import { useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+import { QueryKeys } from '@/constants/query-keys';
+import Swal from 'sweetalert2';
 
 export default function MakePlan({ fullAddress, center }) {
+  const queryClient = useQueryClient(); // queryClient 사용
+  const [open, setOpen] = useState(false);
   const userId = useAuthStore((state) => state.user.id); // 유저정보:id가져오기
   const { formState, handleChange, resetForm } = useForm({
     title: '',
@@ -19,12 +25,23 @@ export default function MakePlan({ fullAddress, center }) {
   });
 
   const { title, date, memo } = formState;
-  function handlePlanSubmit(e, formData) {
-    createData({ ...formData, address: fullAddress, user_id: userId, ...center }); //DB에 일정 추가하는 로직
+  async function handlePlanSubmit(e) {
+    // async을 안쓰니 에러가 납니다 !
+    e.preventDefault(); // 필요 시 이벤트 기본 동작 방지
+    await createData({ ...formState, address: fullAddress, user_id: userId, ...center }).then(
+      Swal.fire({
+        title: '성공',
+        text: '일정이 등록이 완료되었습니다.',
+        icon: 'success'
+      })
+    );
+    queryClient.invalidateQueries({ queryKey: QueryKeys.ALLPLANS(userId) });
     resetForm();
+    setOpen(false);
   }
+
   return (
-    <Dialog isOpen={true}>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline" size="sm">
           일정 추가

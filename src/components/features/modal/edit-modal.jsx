@@ -16,19 +16,34 @@ import ModalTitle from '@/components/layouts/modal/modal-title';
 import ModalDate from '@/components/layouts/modal/modal-date';
 import ModalMemo from '@/components/layouts/modal/modal-memo';
 import useForm from '@/lib/hooks/useForm';
+import { useState } from 'react';
+import { usePlanQuery } from '@/lib/hooks/use-handle-plans-query';
 
 export default function EditPlan({ plan }) {
-  function handleUpdatePlan() {}
-  function handleDeletePlan() {}
-  const { formState, handleChange, resetForm } = useForm({
+  const [open, setOpen] = useState(false);
+
+  function handleUpdatePlan(e, formState) {
+    e.preventDefault();
+
+    updatePlanMutation.mutate(formState);
+    setOpen(false);
+  }
+  function handleDeletePlan(e) {
+    e.preventDefault();
+
+    deletePlanMutation.mutate();
+    setOpen(false);
+  }
+  const { formState, handleChange } = useForm({
     title: plan.title,
     date: plan.date,
     memo: plan.memo
   });
 
+  const { updatePlanMutation, deletePlanMutation } = usePlanQuery(plan.id);
   const { title, date, memo } = formState;
   return (
-    <Dialog isOpen={true}>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline" size="sm">
           일정 수정
@@ -72,7 +87,6 @@ export default function EditPlan({ plan }) {
             className="bg-primary text-primary-foreground px-3 py-1.5 rounded-lg hover:bg-primary/90 text-sm"
             onClick={(e) => {
               handleUpdatePlan(e, formState);
-              resetForm();
             }}
           >
             {UPDATE_PLAN_TEXT}

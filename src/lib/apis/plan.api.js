@@ -76,3 +76,12 @@ export async function deleteData(id) {
   const response = await axiosApi.delete(`plans?id=eq.${id}`);
   return response;
 }
+export async function fetchAllMyPlans(myId) {
+  const response = await axiosApi.get('plans', {
+    params: {
+      select: '*',
+      user_id: `eq.${myId}`,
+    },
+  });
+  return response;
+}

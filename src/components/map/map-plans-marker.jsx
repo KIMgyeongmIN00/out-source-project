@@ -1,11 +1,13 @@
 import { MapMarker, useMap } from 'react-kakao-maps-sdk';
 import { useState } from 'react';
-import useGetAllPlansQuery from '@/lib/hooks/use-get-all-plans-query';
 import { useMemo } from 'react';
 import { PlanMarkerModal } from './map-plans-modal';
+import useGetAllPlansToMarKerQuery from '@/lib/hooks/use-get-all-plans-to-marker-query';
+import { useAuthStore } from '@/stores/auth.store';
 
-export function MapPlansMarker({ setIsOpen, children }) {
-  const { plans, isPending, isError } = useGetAllPlansQuery();
+export function MapPlansMarker() {
+  const userId = useAuthStore((state) => state.user.id);
+  const { allPlans: plans, allPlansError: isError, allPlansLoading } = useGetAllPlansToMarKerQuery(userId);
   // 클릭된 마커(플랜)의 정보를 저장 (null이면 모달이 닫힌 상태)
   const [activePlan, setActivePlan] = useState(null);
   const map = useMap();
@@ -18,7 +20,7 @@ export function MapPlansMarker({ setIsOpen, children }) {
     }));
   }, [plans]);
 
-  if (isPending) {
+  if (allPlansLoading) {
     return <div>로딩중입니다.</div>;
   }
   if (isError) {
