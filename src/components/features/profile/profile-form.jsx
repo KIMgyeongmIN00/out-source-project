@@ -1,5 +1,5 @@
-import { Input } from '@/components/ui/Input';
-import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import { useProfileEdit } from '@/lib/hooks/profile/use-profile-edit.hook';
 
 export default function ProfileForm() {
