@@ -1,5 +1,3 @@
-import EditPlan from '@/components/features/modal/edit-modal';
-import MakePlan from '@/components/features/modal/write-modal';
 import { MAP_SCALE_50M } from '@/constants/map-scale';
 import { useKakaoMapQuery } from '@/lib/apis/map.api';
 import { useMapStore } from '@/stores/map.store';
@@ -9,10 +7,13 @@ import EventMarkerContainer from '@/components/features/map/map-marker';
 import MapAddressModal from '@/components/features/map/map-address-modal';
 import MapAddressSearch from '@/components/features/map/map-search';
 import { useState } from 'react';
+import { MapPlansMarker } from '@/components/features/map/map-plans-marker';
 
 export default function Home() {
   const { kakaoMapLoading, kakaoMapError } = useKakaoMapQuery();
+
   const [currentLocation, setCurrentLocation] = useState('');
+  const [isPlanModalOpen, setIsPlanModalOpen] = useState(false);
 
   const center = useMapStore((state) => state.center);
   const setTargetLocation = useMapStore((state) => state.setTargetLocation);
@@ -38,6 +39,10 @@ export default function Home() {
     setTargetLocation(latlng.getLat(), latlng.getLng());
     toggleInfoWindow(true);
   }
+
+  const handleClosePlanModal = () => {
+    setIsPlanModalOpen(false);
+  };
 
   if (kakaoMapLoading) {
     return (
@@ -65,12 +70,9 @@ export default function Home() {
         onClick={handleMapClick}
       >
         <EventMarkerContainer>{isInfoWindow && <MapAddressModal />}</EventMarkerContainer>
-
         <MapAddressSearch currentLocation={currentLocation} />
+        <MapPlansMarker setIsOpen={setIsPlanModalOpen} />
       </Map>
-
-      <MakePlan />
-      <EditPlan />
     </>
   );
 }
