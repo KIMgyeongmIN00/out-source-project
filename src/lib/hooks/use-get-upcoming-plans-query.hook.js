@@ -12,8 +12,9 @@ export default function useGetUpcomingPlansQuery(userId, limit = 2) {
     queryKey: QueryKeys.INFINITY_UPCOMING_PLANS,
     queryFn: async ({ pageParam }) => {
       const response = await fetchUpcomingPlans(userId, pageParam, limit);
-      const plans = response.data.map(({ created_at, user_id, ...rest }) => ({
+      const plans = response.data.map(({ created_at, user_id, date, ...rest }) => ({
         ...rest,
+        date: date.replace('T', ' '),
         userId: user_id,
         createdAt: created_at
       }));
