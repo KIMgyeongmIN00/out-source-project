@@ -1,6 +1,6 @@
-import Router from '@/config/router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import useAuthSubScriber from '@/lib/hooks/use-auth-subscriber';
+import Router from '@/config/router';
+import useAuthSubScriber from '@/lib/hooks/use-auth-subscriber.hook';
 
 const queryClient = new QueryClient();
 
