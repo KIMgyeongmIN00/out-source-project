@@ -11,7 +11,6 @@ export default function Home() {
   const { kakaoMapLoading, kakaoMapError } = useKakaoMapQuery();
   const { center, setTargetLocation } = useMapStore();
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
-  const [isPlanModalOpen, setIsPlanModalOpen] = useState(false); // 현재 사용자 위치 표시 or 거부시 디폴트 위치 표시
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -29,10 +28,6 @@ export default function Home() {
 
   const handleCloseAddressModal = () => {
     setIsAddressModalOpen(false);
-  };
-
-  const handleClosePlanModal = () => {
-    setIsPlanModalOpen(false);
   };
 
   if (kakaoMapLoading) {
@@ -63,7 +58,7 @@ export default function Home() {
         <EventMarkerContainer setIsOpen={setIsAddressModalOpen}>
           {isAddressModalOpen && <MapModal onCloseModal={handleCloseAddressModal} />}
         </EventMarkerContainer>
-        <MapPlansMarker setIsOpen={setIsPlanModalOpen} />
+        <PlansMarker />
       </Map>
     </>
   );
