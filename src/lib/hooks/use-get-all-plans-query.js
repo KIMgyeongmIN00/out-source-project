@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '../apis/supabase.api';
 import { useAuthStore } from '@/stores/auth.store';
+import { QueryKeys } from '@/constants/query-keys';
 
 export default function useGetAllPlansQuery() {
   const user = useAuthStore((state) => state.user);
@@ -18,7 +19,7 @@ export default function useGetAllPlansQuery() {
     isPending,
     isError
   } = useQuery({
-    queryKey: ['plans'],
+    queryKey: QueryKeys.QUERY_KEY_PLANS,
     queryFn: getPlans
   });
 
