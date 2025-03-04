@@ -12,7 +12,7 @@ export default function ProfileForm() {
   const user = useAuthStore((state) => state.user);
 
   const { mutate: updateProfile } = useUpdateProfileMutation();
-  const { mutate: uploadProfileImage } = useUploadImageMutation(image, user);
+  const { mutate: uploadProfileImage } = useUploadImageMutation();
 
   function handleImageChange(e) {
     const file = e.target.files[0];
@@ -20,7 +20,7 @@ export default function ProfileForm() {
   }
 
   function handleUploadFile() {
-    uploadProfileImage(image);
+    uploadProfileImage({ image, userId: user.id });
   }
 
   function handleCancelUpdate() {
