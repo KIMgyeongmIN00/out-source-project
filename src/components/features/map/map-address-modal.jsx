@@ -1,7 +1,7 @@
 import { useKakaoAddressQuery } from '@/lib/apis/map.api';
 import { useMapStore } from '@/stores/map.store';
 import { X } from 'lucide-react';
-import MakePlan from '../features/modal/write-modal';
+import MakePlan from '../modal/write-modal';
 import { useAuthStore } from '@/stores/auth.store';
 
 export default function MapAddressModal() {

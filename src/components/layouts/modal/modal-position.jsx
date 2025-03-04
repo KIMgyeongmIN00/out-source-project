@@ -1,4 +1,4 @@
-import { EventMarkerContainer } from '@/components/map/map-marker';
+import EventMarkerContainer from '@/components/features/map/map-marker';
 import { Input } from '@/components/ui/input';
 import { MAP_SCALE_50M } from '@/constants/map-scale';
 import { useMapStore } from '@/stores/map.store';

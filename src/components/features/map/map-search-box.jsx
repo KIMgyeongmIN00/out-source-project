@@ -19,7 +19,7 @@ export default function MapSearchBox({ isSearchBox, setIsSearchBox, mapSearch, s
         type="text"
         placeholder="검색어 입력..."
         className={`h-full w-full outline-none px-2 text-lg transition-opacity duration-300 
-              ${isSearchBox ? 'opacity-100' : 'opacity-0 hidden'}  `}
+              ${isSearchBox ? 'opacity-100' : 'opacity-0hidden'}  `}
         value={mapSearch}
         onChange={(e) => setMapSearch(e.target.value)}
       />
