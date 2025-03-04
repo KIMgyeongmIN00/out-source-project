@@ -24,7 +24,6 @@ export default function MakePlan({ Fulladdress, center }) {
   async function handlePlanSubmit(e, formData) {
     createData({ ...formData, address: Fulladdress, user_id: userId, ...center }); //DB에 일정 추가하는 로직
   }
-
   return (
     <Dialog isOpen={true}>
       <DialogTrigger asChild>
