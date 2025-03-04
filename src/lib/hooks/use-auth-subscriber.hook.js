@@ -11,9 +11,7 @@ export default function useAuthSubScriber() {
       if (session) {
         setUser({
           id: session.user.id,
-          email: session.user.email,
-          nickname: session.user.user_metadata.nickname,
-          profileUrl: session.user.user_metadata.profile_url
+          email: session.user.email
         });
         async function setAuth() {
           const { data } = await supabase.from('users').select().eq('id', session.user.id).single();
