@@ -47,7 +47,7 @@ export function MapPlansMarker() {
         >
           {/* activePlan이 있고, 해당 마커의 id와 activePlan의 id가 일치할 때만 모달 렌더링 */}
           {activePlan && activePlan.id === position.id && (
-            <PlanMarkerModal onCloseModal={() => setActivePlan(null)} plan={position} />
+            <PlanMarkerModal onCloseModal={() => setActivePlan(null)} planId={activePlan.id} />
           )}
         </MapMarker>
       ))}

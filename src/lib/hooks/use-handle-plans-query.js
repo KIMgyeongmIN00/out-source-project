@@ -1,10 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { deleteData, updateData } from '@api/plan.api';
-import { useNavigate } from 'react-router-dom';
 import { QueryKeys, QueryTime } from '@/constants/query-keys';
 
-export function usePlanQuery(planId) {
+export function usePlanQuery(userId, planId) {
   const queryClient = useQueryClient();
 
   const {
@@ -27,6 +26,8 @@ export function usePlanQuery(planId) {
         icon: 'success'
       });
       queryClient.invalidateQueries({ queryKey: QueryKeys.PLAN(planId) });
+
+      queryClient.invalidateQueries({ queryKey: ['position'] });
     }
   });
 
@@ -39,6 +40,9 @@ export function usePlanQuery(planId) {
         icon: 'success'
       });
       queryClient.invalidateQueries({ queryKey: QueryKeys.PLAN(planId) });
+      // 전체 플랜 목록 쿼리도 무효화하여 업데이트
+      queryClient.invalidateQueries({ queryKey: QueryKeys.ALLPLANS(userId) });
+      queryClient.invalidateQueries({ queryKey: ['position'] });
     }
   });
 

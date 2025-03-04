@@ -18,10 +18,11 @@ import ModalMemo from '@/components/layouts/modal/modal-memo';
 import useForm from '@/lib/hooks/useForm';
 import { useState } from 'react';
 import { usePlanQuery } from '@/lib/hooks/use-handle-plans-query';
+import { useAuthStore } from '@/stores/auth.store';
 
 export default function EditPlan({ plan }) {
   const [open, setOpen] = useState(false);
-
+  const userId = useAuthStore((state) => state.user.id);
   function handleUpdatePlan(e, formState) {
     e.preventDefault();
 
@@ -40,7 +41,7 @@ export default function EditPlan({ plan }) {
     memo: plan.memo
   });
 
-  const { updatePlanMutation, deletePlanMutation } = usePlanQuery(plan.id);
+  const { updatePlanMutation, deletePlanMutation } = usePlanQuery(userId, plan.id);
   const { title, date, memo } = formState;
   return (
     <Dialog open={open} onOpenChange={setOpen}>
