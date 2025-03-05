@@ -15,11 +15,11 @@ export default function UserPanel({ user }) {
         <b className="text-primary">{user.nickname}</b> 님
       </p>
       <div className="space-x-4">
-        <Button size="icon">
-          <Link to="/profile">
+        <Link to="/profile">
+          <Button size="icon">
             <MdOutlinePerson />
-          </Link>
-        </Button>
+          </Button>
+        </Link>
         <Button size="icon" onClick={() => signOut()}>
           <MdLogout />
         </Button>
