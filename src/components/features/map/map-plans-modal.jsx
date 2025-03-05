@@ -1,41 +1,21 @@
 import { X } from 'lucide-react';
-import EditPlan from '../modal/edit-modal';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { fetchSharePlan } from '@/lib/apis/plan.api';
-import { useQuery } from '@tanstack/react-query';
+import EditPlan from '@features/modal/edit-modal';
+import usePlanMarker from '@/lib/hooks/map/use-map-plans-modal.hook';
 
 export function PlanMarkerModal({ onCloseModal, planId }) {
-  const { data: data, isLoading } = useQuery({
-    queryKey: ['position'],
-    queryFn: () => fetchSharePlan(planId)
-  });
-  function formatPlanDate(dateString) {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1; // 월은 0부터 시작하므로 1을 더함
-    const day = date.getDate();
-    let hour = date.getHours();
-    const minute = date.getMinutes();
+  const { markedData, nowPlanDate, isLoading } = usePlanMarker(planId);
 
-    // 오전/오후 결정 (0시가 12시로 표시되어야 함)
-    const period = hour < 12 ? '오전' : '오후';
-    hour = hour % 12;
-    if (hour === 0) hour = 12;
+  const plan = markedData?.data[0] || '에러';
 
-    return `${year}년 ${month}월 ${day}일 ${period} ${hour}시 ${minute}분`;
-  }
-
-  const nowPlanDate = data?.data[0].date ? formatPlanDate(data.data[0].date) : '';
   if (isLoading) {
-    return <div>로딩중</div>;
+    return <div>로딩 중...</div>;
   }
   return (
     <div className="absolute left-20 transform -translate-x-1/2 -top-34 w-80 bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden z-50">
       <div className="w-full py-3 px-4 bg-white border-b border-gray-200 flex items-center justify-between">
         <div className="flex text-center flex-1">
-          <h3 className="text-base font-semibold text-gray-800 truncate max-w-[95%]">{data.data[0].title}</h3>
-          <EditPlan plan={data.data[0]} />
+          <h3 className="text-base font-semibold text-gray-800 truncate max-w-[95%]">{plan?.title}</h3>
+          <EditPlan plan={plan} />
         </div>
 
         <button
@@ -50,7 +30,7 @@ export function PlanMarkerModal({ onCloseModal, planId }) {
       <div className="p-4">
         <div className="mb-3">
           <div className="text-sm font-medium text-gray-700 mb-1">장소 :</div>
-          <div className="text-sm text-gray-600">{data.data[0].address}</div>
+          <div className="text-sm text-gray-600">{plan?.address}</div>
         </div>
         <div className="mb-3">
           <div className="text-sm font-medium text-gray-700 mb-1">일정 :</div>
@@ -58,13 +38,11 @@ export function PlanMarkerModal({ onCloseModal, planId }) {
         </div>
         <div className="mb-3">
           <div className="text-sm font-medium text-gray-700 mb-1">세부사항 :</div>
-          <div className="text-sm text-gray-600">{data.data[0].memo}</div>
+          <div className="text-sm text-gray-600">{plan?.memo}</div>
         </div>
         <div className="flex justify-between mt-4">
           <a
-            href={`https://map.kakao.com/link/map/${encodeURIComponent(data.data[0].address)},${data.data[0].lat},${
-              data.data[0].lng
-            }`}
+            href={`https://map.kakao.com/link/map/${encodeURIComponent(plan?.address)},${plan?.lat},${plan?.lng}`}
             target="_blank"
             rel="noreferrer"
             className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
@@ -72,9 +50,7 @@ export function PlanMarkerModal({ onCloseModal, planId }) {
             큰지도보기
           </a>
           <a
-            href={`https://map.kakao.com/link/to/${encodeURIComponent(data.data[0].address)},${data.data[0].lat},${
-              data.data[0].lng
-            }`}
+            href={`https://map.kakao.com/link/to/${encodeURIComponent(plan?.address)},${plan?.lat},${plan?.lng}`}
             target="_blank"
             rel="noreferrer"
             className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"

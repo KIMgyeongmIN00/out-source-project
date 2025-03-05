@@ -1,7 +1,7 @@
 import SignErrorPanel from '@/components/layouts/sidebar/sign-error-panel';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import useSignInForm from '@/lib/hooks/use-sign-in-form.hook';
+import useSignInForm from '@/lib/hooks/sidebar/use-sign-in-form.hook';
 
 export default function SignInForm() {
   const { errorMessages, handleBlurEvent, handleSubmitEvent } = useSignInForm();
