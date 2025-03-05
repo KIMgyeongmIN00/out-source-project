@@ -1,9 +1,9 @@
 import { Fragment, useCallback, useRef } from 'react';
-import PlanCard from '@/components/layouts/sidebar/plan-card';
 import useGetUpcomingPlansQuery from '@/lib/hooks/sidebar/use-get-upcoming-plans-query.hook';
 import { useMapStore } from '@/stores/map.store';
 import { useState } from 'react';
 import EditPlan from '@/components/features/modal/edit-modal';
+import PlanCard from '@/components/ui/plan-card';
 
 export default function PlanPanel({ userId }) {
   const [editModalOpen, setEditModalOpen] = useState(false);

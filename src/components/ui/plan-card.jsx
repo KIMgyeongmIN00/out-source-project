@@ -7,7 +7,7 @@ const PlanCard = forwardRef(({ plan }, ref) => {
       <h5 className="font-semibold overflow-hidden text-ellipsis text-nowrap">{plan.title}</h5>
       <p className="text-sm flex items-center gap-1">
         <MdOutlineAccessTime className="mr-1" />
-        <span className="flex-1 overflow-hidden text-ellipsis text-nowrap">{plan.date}</span>
+        <span className="flex-1 overflow-hidden text-ellipsis text-nowrap">{plan.date.replace('T', ' ')}</span>
       </p>
       <p className="text-sm flex items-center gap-1">
         <MdOutlineLocationOn className="mr-1" />
