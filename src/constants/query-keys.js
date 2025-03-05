@@ -5,5 +5,7 @@ export const QueryKeys = {
   PLAN: (planId) => ['plan', planId],
   ALL_PLANS: (userId) => ['all-plans', userId],
   PAGED_PLANS: (page) => ['paged-plans', page],
-  PINNED_PLAN: (planId) => ['pinned-plan', planId]
+  PINNED_PLAN: (planId) => ['pinned-plan', planId],
+  KAKAO_ADDRESS: (lat, lng) => ['kakao-address', lat, lng],
+  KAKAO_SEARCH: (lat, lng, search) => ['kakao-search', lat, lng, search]
 };

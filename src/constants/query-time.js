@@ -6,4 +6,3 @@ export const QueryTime = {
   FIVE_MINUTE: 1000 * 300,
   TEN_MINUTE: 1000 * 600,
 }
-

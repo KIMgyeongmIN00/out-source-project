@@ -4,13 +4,8 @@ import { useMapStore } from '@/stores/map.store';
 
 export const useHome = () => {
   const { kakaoMapLoading, kakaoMapError } = useKakaoMapQuery();
-  const [currentLocation, setCurrentLocation] = useState('');
-  const {
-    center,
-    setTargetLocation,
-    isInfoWindow,
-    toggleInfoWindow
-  } = useMapStore();
+  const { center, setTargetLocation, isInfoWindow, toggleInfoWindow } = useMapStore();
+  const [currentLocation, setCurrentLocation] = useState(center);
 
   // 현재 위치 조회 로직
   useEffect(() => {
@@ -28,7 +23,7 @@ export const useHome = () => {
     };
 
     getGeolocation();
-  }, [setTargetLocation]);
+  }, []);
 
   // 지도 클릭 핸들러
   const handleMapClick = (_, mouseEvent) => {
