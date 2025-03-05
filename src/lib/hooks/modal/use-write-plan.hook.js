@@ -36,9 +36,10 @@ export const useMakePlan = (fullAddress, center) => {
       });
 
       queryClient.invalidateQueries({ queryKey: QueryKeys.ALLPLANS(userId) });
+      queryClient.invalidateQueries({ queryKey: QueryKeys.INFINITY_UPCOMING_PLANS });
       resetForm();
       setOpen(false);
-    } catch (error) {
+    } catch {
       Swal.fire({
         title: '오류',
         text: '일정 등록에 실패했습니다.',
