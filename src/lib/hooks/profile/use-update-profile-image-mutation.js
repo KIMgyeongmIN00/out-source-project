@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { supabase } from '../apis/supabase.api';
-import sweetAlert from '../utils/sweet-alert.util';
+import { supabase } from '../../apis/supabase.api';
+import sweetAlert from '../../utils/sweet-alert.util';
 import { useAuthStore } from '@/stores/auth.store';
 import { QueryKeys } from '@/constants/query-keys';
 

@@ -1,32 +1,9 @@
-import { useKakaoAddressQuery } from '@/lib/apis/map.api';
-import { useMapStore } from '@/stores/map.store';
 import { X } from 'lucide-react';
-import MakePlan from '../modal/write-modal';
-import { useAuthStore } from '@/stores/auth.store';
+import { useMapAddress } from '@/lib/hooks/map/use-map-address.hook';
+import MakePlan from '@features/modal/write-modal';
 
 export default function MapAddressModal() {
-  const center = useMapStore((state) => state.center);
-  const selectedAddress = useMapStore((state) => state.selectedAddress);
-  const toggleInfoWindow = useMapStore((state) => state.toggleInfoWindow);
-  const isAuth = useAuthStore((state) => state.isAuthenticated);
-
-  const {
-    data: addressData,
-    isLoading: addressLoading,
-    error: addressError
-  } = useKakaoAddressQuery(center.lat, center.lng);
-
-  const locationName =
-    selectedAddress?.place ||
-    addressData?.documents[0]?.road_address?.building_name ||
-    addressData?.documents[0]?.address?.address_name ||
-    '주소 정보 없음';
-
-  const fullAddress =
-    selectedAddress?.address ||
-    addressData?.documents[0]?.road_address?.address_name ||
-    addressData?.documents[0]?.address?.address_name ||
-    '상세 주소 정보 없음';
+  const { center, locationName, fullAddress, addressLoading, addressError, toggleInfoWindow, isAuth } = useMapAddress();
 
   return (
     <div className="absolute left-20 transform -translate-x-1/2 -top-34 w-80 bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden z-50">

@@ -2,7 +2,7 @@ import { QueryKeys } from '@/constants/query-keys';
 import { fetchUpcomingPlans } from '@/lib/apis/plan.api';
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
-export default function useGetUpcomingPlansQuery(userId, limit = 2) {
+export default function useGetUpcomingPlansQuery(userId, limit = 20) {
   const {
     data: { pages },
     fetchNextPage,
