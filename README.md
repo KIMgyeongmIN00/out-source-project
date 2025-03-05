@@ -1,20 +1,23 @@
 # Localendar
-
+<div align="center">
+  <img width="400px" src="https://github.com/user-attachments/assets/039ffaf2-b574-449e-8eef-609b82ddee2f" alt="logo" />
 </div>
 
 ## 📝 프로젝트 소개
+**장소 기반으로 일정을 관리할 수 있는 웹 어플리케이션**
 
-📅개발 기간: 2025.02.26 ~ 2025.03.05
-
-위치기반 일정관리 사이트 "Localendar"입니다.<br/>
-위치의 "Location"과 달력의 "Calendar"를 합친 이름입니다.
+- 위치기반 일정관리 사이트 "Localendar"입니다.
+- 위치의 "Location"과 달력의 "Calendar"를 합친 이름입니다.
+- 장소 기반으로 자신의 일정을 시각적으로 관리할 수 있는 웹 애플리케이션입니다.
+- 사용자는 지도 위에서 자신의 일정을 한눈에 확인하고 관리할 수 있습니다.
+- 지난 일정을 아카이브 형태로 확인할 수 있어 과거 활동을 쉽게 되돌아볼 수 있습니다.
 
 <br />
 
-### 💬 배포 링크
+> 📅 개발 기간: 2025.02.26 ~ 2025.03.05 (총 7일) <br />
+> 💬 배포 주소: [https://out-source-project.vercel.app/](https://out-source-project.vercel.app/)
 
-https://out-source-project.vercel.app/
-
+<br />
 <br />
 
 ### ✨ 화면 구성
@@ -34,174 +37,144 @@ https://out-source-project.vercel.app/
 
 <br />
 
-## 📄 기능 소개
+## 📄 프로젝트 기능 소개
 
-- 로그인/로그아웃 기능
-- 무한 스크롤을 적용한 남은 일정 목록 보여주는 기능
-- 검색을 통한 지도 장소 검색 기능
-- 장소의 마커 오버레이에서 모달을 통해 일정 생성하는 기능
-- 지도에 표시된 마커를 클릭하여 상세 모달 확인 및 수정/삭제 기능
-- 마이페이지에서 프로필 수정 기능
-- perfecth를 적용하여 이전 일정을 페이지네이션으로 렌더링
+- **React 기반 웹 애플리케이션**입니다.
+- TanStack Query의 **Infinite Query**와 **Prefetch**를 사용하여 사용자 경험을 향상시켰습니다.
+- TanStack Query와 함께 **Suspense**를 사용하여 개발자 경험을 향상시켰습니다.
+- supabase를 이용하여 **이메일 회원가입 및 로그인 기능**을 제공합니다.
+- 로그인된 유저의 인증 상태에 따라 **ProtectedRoute**를 적용하여 비인가 사용자의 접근을 제한합니다.
+- 일정을 지도 위 마커로 시각화하여 위치 기반 일정 관리를 직관적으로 구현했습니다.
+- 검색창을 통해 장소를 쉽게 찾고, 직관적인 모달을 통해 일정을 생성/수정할 수 있어 사용자 편의성을 높였습니다.
+- 마이페이지에서 프로필 수정 및 지난 일정 기록과 가장 자주 방문한 장소를 한눈에 확인할 수 있도록 구성했습니다.
 
+<br />
 <br />
 
 ## ⚙ 기술 스택
 
-### Structure
+<div align="left">
 
-<div>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original-wordmark.svg" height="40" alt="tailwindcss logo"  />
-  <img src="https://velog.velcdn.com/images/yesoryeseul/post/3ba5774b-7c7c-4061-b34e-220f1fc60bc5/image.png" height="40" alt="shadcn-logo"  />
-</div>
-    
+### Cooperation
+<img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git" />
+<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="Github" />
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma" />
+<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white" alt="Notion" />
+<br>
+
 ### Development
-<div>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="40" alt="react logo"  />
-  <img src="https://user-images.githubusercontent.com/958486/218346783-72be5ae3-b953-4dd7-b239-788a882fdad6.svg" height="40" alt="zustand logo"  />
-  <img src="https://i.ibb.co/hF6tvRw5/react-query-seeklogo.png" height="40" alt="tanstack-query-logo"  />
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black" alt="React" />
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white" alt="JavaScript" />
+<img src="https://img.shields.io/badge/Tanstackquery-FF4154?style=for-the-badge&logo=reactquery&logoColor=white" alt="TanstackQeury">
+<img src="https://img.shields.io/badge/Zustand-82612C?style=for-the-badge&logo=&logoColor=white" alt="Zustand">      
+<img src="https://img.shields.io/badge/Tailwind CSS-06B6D4?style=for-the-badge&amp;logo=Tailwind CSS&amp;logoColor=white" alt="TailwindCSS">
+<img src="https://img.shields.io/badge/shadcn/ui-000000.svg?style=for-the-badge&logo=shadcn/ui&logoColor=white" alt="Shadcn" />
+
 </div>
 
+<br />
 <br />
 
 ## 📁 프로젝트 구조
 
 ```
-📁out-source-project
-├─ .prettierrc
-├─ components.json
-├─ eslint.config.js
-├─ index.html
-├─ jsconfig.json
-├─ package.json
-├─ pnpm-lock.yaml
-├─ 📁public
-│  ├─ default_profile.png
-│  ├─ favicon.ico
-│  └─ logo.png
-├─ README.md
-├─ 📁src
-│  ├─ App.jsx
-│  ├─📁components
-│  │  ├─📁features
-│  │  │  ├─📁map
-│  │  │  │  ├─ map-address-modal.jsx
-│  │  │  │  ├─ map-marker.jsx
-│  │  │  │  ├─ map-plans-marker.jsx
-│  │  │  │  ├─ map-plans-modal.jsx
-│  │  │  │  ├─ map-search-box.jsx
-│  │  │  │  ├─ map-search-result-item.jsx
-│  │  │  │  ├─ map-search-results.jsx
-│  │  │  │  └─ map-search.jsx
-│  │  │  ├─📁modal
-│  │  │  │  ├─ edit-modal.jsx
-│  │  │  │  └─ write-modal.jsx
-│  │  │  ├─📁profile
-│  │  │  │  └─ profile-form.jsx
-│  │  │  └─📁protected-router
-│  │  │     └─ warning-alert.jsx
-│  │  ├─📁layouts
-│  │  │  ├─📁modal
-│  │  │  │  ├─ modal-date.jsx
-│  │  │  │  ├─ modal-memo.jsx
-│  │  │  │  ├─ modal-position.jsx
-│  │  │  │  └─ modal-title.jsx
-│  │  │  ├─ root-layout.jsx
-│  │  │  └─📁sidebar
-│  │  │     ├─ plan-card.jsx
-│  │  │     ├─ plan-panel.jsx
-│  │  │     ├─ sidebar.jsx
-│  │  │     ├─ sign-error-panel.jsx
-│  │  │     ├─ sign-in-form.jsx
-│  │  │     ├─ sign-panel.jsx
-│  │  │     ├─ sign-up-form.jsx
-│  │  │     └─ user-panel.jsx
-│  │  └─📁ui
-│  │     ├─ alert-dialog.jsx
-│  │     ├─ button.jsx
-│  │     ├─ dialog.jsx
-│  │     ├─ input.jsx
-│  │     ├─ pagination.jsx
-│  │     └─ textarea.jsx
-│  ├─📁config
-│  │  ├─ protected-router.jsx
-│  │  └─ router.jsx
-│  ├─📁constants
-│  │  ├─ app-key.js
-│  │  ├─ map-scale.js
-│  │  ├─ modal-constants.js
-│  │  ├─ page-constants.js
-│  │  ├─ query-key.js
-│  │  ├─ query-keys.js
-│  │  └─ query-time.js
-│  ├─📁lib
-│  │  ├─📁apis
-│  │  │  ├─ auth.api.js
-│  │  │  ├─ axios.api.js
-│  │  │  ├─ map.api.js
-│  │  │  ├─ plan.api.js
-│  │  │  └─ supabase.api.js
-│  │  ├─📁hooks
-│  │  │  ├─ use-auth-subscriber.hook.js
-│  │  │  ├─ use-fetch-all-plans-on-page.hook.js
-│  │  │  ├─ use-get-all-plans-query.js
-│  │  │  ├─ use-get-all-plans-to-marker-query.js
-│  │  │  ├─ use-get-upcoming-plans-query.hook.js
-│  │  │  ├─ use-handle-plans-query.js
-│  │  │  ├─ use-page-plans.hook.js
-│  │  │  ├─ use-rank-address-query.js
-│  │  │  ├─ use-sign-in-form.hook.js
-│  │  │  ├─ use-sign-up-form.hook.js
-│  │  │  ├─ use-update-nickname-mutation.js
-│  │  │  ├─ use-update-profile-image-mutation.js
-│  │  │  └─ useForm.jsx
-│  │  ├─📁utils
-│  │  │  ├─ auth-validate.util.js
-│  │  │  └─ sweet-alert.util.js
-│  │  └─ utils.js
-│  ├─ main.jsx
-│  ├─📁pages
-│  │  ├─ home.jsx
-│  │  └─ profile.jsx
-│  ├─📁stores
-│  │  ├─ auth.store.js
-│  │  └─ map.store.js
-│  └─📁styles
-│     └─ globals.css
-└─ vite.config.js
+📦 out-source-project
+├─ public
+└─ src
+   ├─ App.jsx
+   ├─ main.jsx
+   ├─ components
+   │  ├─ features
+   │  ├─ layouts
+   │  └─ ui
+   ├─ config
+   ├─ constants
+   ├─ lib
+   │  ├─ apis
+   │  ├─ hooks
+   │  └─ utils
+   ├─ pages
+   ├─ stores
+   └─ styles
 ```
 
 <br />
+<br />
 
-## 👥 팀원 소개
+## 👩‍👩‍👧‍👧 프로젝트 멤버 소개
 
-### 👨🏽‍💻김경민(팀장)
-
-- axios연결 및 리팩토링
-
-<br/>
-
-### 👨🏽‍💻김종연(팀원)
-
-- 프로필 이미지 업로드 및 닉네임 수정 기능 구현
-
-<br/>
-
-### 👩🏽‍💻박애리(팀원)
-
-- 일정 추가 모달 및 기능 구현
-- 일정 수정/삭제 모달 및 기능 구현
-
-<br/>
-
-### 👩🏽‍💻이다은(팀원)
-
-- 사이드 바 구현
-- 로그인/로그아웃 기능 구현
-
-<br/>
-
-### 👨🏽‍💻정현식(팀원)
-
-- 카카오지도API를 활용한 검색 기능 구현
-- 지도 클릭 이벤트 구현
+<table>
+  <tbody>
+    <tr>
+      <td width="300px" align="center">
+        <a href="https://github.com/KIMgyeongmIN00">
+        <img src="https://github.com/KIMgyeongmIN00.png" width="80" alt="KIMgyeongmIN00"/>
+        <br />
+        <sub><b>KIMgyeongmIN00</b></sub>
+        </a>
+        <br />
+      </td>
+      <td width="300px" align="center">
+        <a href="https://github.com/kjjyyy01">
+        <img src="https://github.com/kjjyyy01.png" width="80" alt="kjjyyy01"/>
+        <br />
+        <sub><b>kjjyyy01</b></sub>
+        </a>
+        <br />
+      </td>
+      <td width="300px" align="center">
+        <a href="https://github.com/Aeri0730">
+        <img src="https://github.com/Aeri0730.png" width="80" alt="Aeri0730"/>
+        <br />
+        <sub><b>Aeri0730</b></sub>
+        </a>
+        <br />
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        protectedRouter 및 라우팅 경로 설계 <br/>
+        API 정의 및 TanStackQuery Hook 구현 <br/>
+        전역 상태 관리 <br/>
+      </td>
+      <td align="center">
+        supabase의 storage에 이미지 로드 <br/>
+        프로필 이미지 및 닉네임 수정 기능 <br/>
+      </td>
+      <td align="center">
+        일정 생성/수정 모달 구현 <br/>
+        지도에 일정 위치를 노란 마커로 표시 <br/>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/llddang">
+        <img src="https://github.com/llddang.png" width="80" alt="llddang"/>
+        <br />
+        <sub><b>llddang</b></sub>
+        </a>
+        <br />
+      </td>
+      <td align="center">
+        <a href="https://github.com/sharet9446">
+        <img src="https://github.com/sharet9446.png" width="80" alt="sharet9446"/>
+        <br />
+        <sub><b>sharet9446</b></sub>
+        </a>
+        <br />
+      </td>
+      <td rowspan="2" align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        사이드바 구현 <br/>
+        로그인/회원가입 구현 <br/>
+      </td>
+      <td align="center">
+        전체적인 지도 API 구현 담당 <br/>
+        장소 검색을 통한 지도 이동 구현 <br/>
+      </td>
+    </tr>
+  </tbody>
+</table>
