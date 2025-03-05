@@ -35,7 +35,7 @@ export const useMakePlan = (fullAddress, center) => {
         icon: 'success'
       });
 
-      queryClient.invalidateQueries({ queryKey: QueryKeys.ALLPLANS(userId) });
+      queryClient.invalidateQueries({ queryKey: QueryKeys.ALL_PLANS(userId) });
       queryClient.invalidateQueries({ queryKey: QueryKeys.INFINITY_UPCOMING_PLANS });
       resetForm();
       setOpen(false);
