@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import { usePlanQuery } from '@/lib/hooks/use-handle-plans-query';
 import { useAuthStore } from '@/stores/auth.store';
 import useForm from '@hooks/useForm';
 
-export const useEditPlan = (plan) => {
-  const [open, setOpen] = useState(false);
+export const useEditPlan = (plan, setOpen) => {
   const userId = useAuthStore((state) => state.user.id);
 
   // Form 상태 관리
@@ -32,8 +30,6 @@ export const useEditPlan = (plan) => {
   };
 
   return {
-    open,
-    setOpen,
     formState,
     handleChange,
     handleUpdatePlan,
