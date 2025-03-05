@@ -14,5 +14,5 @@ export default function usePlanMarker(planId) {
       ? formatPlanDate(markedData.data[0].date)
       : '';
 
-  return { markedData, nowPlanDate, isLoading }
+  return { markedData, nowPlanDate, isLoading };
 }

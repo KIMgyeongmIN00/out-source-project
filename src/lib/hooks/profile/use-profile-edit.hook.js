@@ -4,7 +4,6 @@ import sweetAlert from '@/lib/utils/sweet-alert.util';
 import useUpdateProfileImageMutation from './use-update-profile-image-mutation';
 import useUpdateNicknameMutation from './use-update-nickname-mutation';
 
-
 export function useProfileEdit() {
   const [editMode, setEditMode] = useState(false);
   const [nickname, setNickname] = useState('');
@@ -52,6 +51,6 @@ export function useProfileEdit() {
     handleUpdateProfileImage,
     handleUpdateNickname,
     handleCancelUpdate,
-    user,
+    user
   };
 }

@@ -11,7 +11,7 @@ export function useMapAddress() {
   const {
     data: addressData,
     isLoading: addressLoading,
-    error: addressError,
+    error: addressError
   } = useKakaoAddressQuery(center?.lat, center?.lng);
 
   const locationName =
@@ -33,6 +33,6 @@ export function useMapAddress() {
     addressLoading,
     addressError,
     toggleInfoWindow,
-    isAuth,
+    isAuth
   };
 }
