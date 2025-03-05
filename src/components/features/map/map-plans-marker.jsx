@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { PlanMarkerModal } from './map-plans-modal';
 import useGetAllPlansToMarKerQuery from '@/lib/hooks/marker/use-get-all-plans-to-marker-query';
 import { useAuthStore } from '@/stores/auth.store';
-
+import markerStar from '../../../../public/markerStar.png';
 export function MapPlansMarker() {
   const userId = useAuthStore((state) => state.user.id);
   const { allPlans: plans, allPlansError: isError, allPlansLoading } = useGetAllPlansToMarKerQuery(userId);
@@ -40,7 +40,7 @@ export function MapPlansMarker() {
             setActivePlan(position);
           }}
           image={{
-            src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png',
+            src: markerStar,
             size: { width: 24, height: 35 }
           }}
           title={position.title}
