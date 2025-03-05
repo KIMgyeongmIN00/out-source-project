@@ -10,11 +10,9 @@ export default function ProfileMostVisitedPlace({ plans }) {
       <ul className="grid grid-cols-3 justify-start flex-wrap gap-4">
         {topLocations.map(([address]) => {
           return (
-            <li key={address} className="border-2 border-primary p-4 rounded-lg h-[60px]">
-              <p className="flex items-center gap-1">
-                <MdOutlineLocationOn />
-                {address}
-              </p>
+            <li key={address} className="border-2 border-primary p-4 rounded-lg flex items-center">
+              <MdOutlineLocationOn />
+              <p className="flex-1 overflow-hidden text-ellipsis text-nowrap">{address}</p>
             </li>
           );
         })}
