@@ -3,7 +3,7 @@ export const QueryKeys = {
   QUERY_KEY_USERS: ['users'],
   QUERY_KEY_PLANS: ['plans'],
   PLAN: (planId) => ['plan', planId],
-  ALLPLANS: (userId) => ['all-plans', userId],
+  ALL_PLANS: (userId) => ['all-plans', userId],
   PAGED_PLANS: (page) => ['paged-plans', page],
   PINNED_PLAN: (planId) => ['pinned-plan', planId],
   KAKAO_ADDRESS: (lat, lng) => ['kakao-address', lat, lng],

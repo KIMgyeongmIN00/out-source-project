@@ -42,7 +42,7 @@ export function usePlanQuery(userId, planId) {
       });
       queryClient.invalidateQueries({ queryKey: QueryKeys.PLAN(planId) });
       // 전체 플랜 목록 쿼리도 무효화하여 업데이트
-      queryClient.invalidateQueries({ queryKey: QueryKeys.ALLPLANS(userId) });
+      queryClient.invalidateQueries({ queryKey: QueryKeys.ALL_PLANS(userId) });
       queryClient.invalidateQueries({ queryKey: QueryKeys.PINNED_PLAN(planId) });
     }
   });

@@ -1,4 +1,3 @@
-import { MdOutlineAccessTime, MdOutlineLocationOn } from 'react-icons/md';
 import {
   Pagination,
   PaginationContent,
@@ -8,10 +7,30 @@ import {
   PaginationPrevious
 } from '@/components/ui/pagination';
 import { usePagePlans } from '@/lib/hooks/use-page-plans.hook';
+import PlanCard from '@/components/ui/plan-card';
+import { useState } from 'react';
+import EditPlan from '@/components/features/modal/edit-modal';
 
 export default function ProfilePagination() {
   const { data, isLoading, startPage, endPage, prefetchPage, setPage, setPageGroup, page, pageGroup, totalPages } =
     usePagePlans();
+
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState(null);
+
+  function handlePlanUlClick(e) {
+    const planCard = e.target.closest('li');
+
+    if (planCard) {
+      const planId = planCard.dataset.id;
+      const plan = data.plans.find((p) => p.id === planId);
+
+      if (plan) {
+        setSelectedPlan(plan);
+        setEditModalOpen(true);
+      }
+    }
+  }
 
   return (
     <>
@@ -19,35 +38,16 @@ export default function ProfilePagination() {
         <div className="flex flex-col justify-center">
           <h3 className="mb-4">지난 일정</h3>
           <div className="">
-            <ul className="grid grid-cols-3 flex-row flex-wrap gap-4 w-full">
-              {isLoading ? (
+            <ul className="grid grid-cols-3 flex-row flex-wrap gap-4 w-full" onClick={handlePlanUlClick}>
+              {isLoading || !data ? (
                 <p>로딩 중...</p>
               ) : (
-                data?.plans
-                  .sort((a, b) => new Date(b.date) - new Date(a.date))
-                  .map((plan) => {
-                    const trimedData = plan.date.replace('T', ' ');
-                    return (
-                      <li
-                        key={plan.id}
-                        className=" flex flex-col justify-between border-2 border-primary p-2 rounded-lg"
-                      >
-                        <p className="mb-1 font-semibold">{plan.title}</p>
-                        <p className="flex items-center gap-1">
-                          <MdOutlineAccessTime />
-                          {trimedData}
-                        </p>
-                        <p className="flex items-center gap-1">
-                          <MdOutlineLocationOn />
-                          {plan.address}
-                        </p>
-                      </li>
-                    );
-                  })
+                data.plans.map((plan) => <PlanCard key={plan.id} plan={plan} />)
               )}
             </ul>
           </div>
         </div>
+        {editModalOpen && <EditPlan plan={selectedPlan} open={editModalOpen} setOpen={setEditModalOpen} />}
         <Pagination>
           <PaginationContent className="pt-4">
             <PaginationItem>

@@ -9,7 +9,7 @@ export default function useGetAllPlansToMarKerQuery(userId) {
     error: allPlansError,
     isLoading: allPlansLoading
   } = useQuery({
-    queryKey: QueryKeys.ALLPLANS(userId),
+    queryKey: QueryKeys.ALL_PLANS(userId),
     queryFn: async () => {
       const response = await fetchAllMyPlans(userId);
       return response.data;

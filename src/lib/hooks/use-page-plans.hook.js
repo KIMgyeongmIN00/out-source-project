@@ -1,18 +1,16 @@
-import { QueryKeys } from "@/constants/query-keys";
-import { QueryTime } from "@/constants/query-time";
-import { useAuthStore } from "@/stores/auth.store";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
-import { fetchMyPlansLimit } from "../apis/plan.api";
-import { PAGE_GROUP_SIZE, PAGE_SIZE } from "@/constants/page-constants";
+import { QueryKeys } from '@/constants/query-keys';
+import { QueryTime } from '@/constants/query-time';
+import { useAuthStore } from '@/stores/auth.store';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
+import { fetchMyPlansLimit } from '../apis/plan.api';
+import { PAGE_GROUP_SIZE, PAGE_SIZE } from '@/constants/page-constants';
 
 export function usePagePlans() {
-
   const myId = useAuthStore((state) => state.user.id);
   const queryClient = useQueryClient();
   const [page, setPage] = useState(1);
   const [pageGroup, setPageGroup] = useState(0);
-
 
   const { data, isLoading } = useQuery({
     queryKey: QueryKeys.PAGED_PLANS(page),
@@ -47,5 +45,5 @@ export function usePagePlans() {
     }
   };
 
-  return { data, isLoading, startPage, endPage, prefetchPage, setPage, setPageGroup, page, pageGroup, totalPages }
+  return { data, isLoading, startPage, endPage, prefetchPage, setPage, setPageGroup, page, pageGroup, totalPages };
 }

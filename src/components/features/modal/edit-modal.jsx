@@ -1,7 +1,5 @@
-import React from 'react';
 import {
   Dialog,
-  DialogTrigger,
   DialogContent,
   DialogHeader,
   DialogTitle,
@@ -9,7 +7,7 @@ import {
   DialogDescription
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Trash2, PencilLine } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 import ModalPosition from '@/components/layouts/modal/modal-position';
 import ModalTitle from '@/components/layouts/modal/modal-title';
 import ModalDate from '@/components/layouts/modal/modal-date';
@@ -17,26 +15,18 @@ import ModalMemo from '@/components/layouts/modal/modal-memo';
 import { DELETE_PLAN_TEXT, UPDATE_PLAN_TEXT } from '@/constants/modal-constants';
 import { useEditPlan } from '@/lib/hooks/modal/use-edit-plan.hook';
 
-export default function EditPlan({ plan }) {
-  const { open, setOpen, formState, handleChange, handleUpdatePlan, handleDeletePlan } = useEditPlan(plan);
+export default function EditPlan({ plan, open, setOpen }) {
+  const { formState, handleChange, handleUpdatePlan, handleDeletePlan } = useEditPlan(plan);
 
   const { title, date, memo } = formState;
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
-          일정 수정
-        </Button>
-      </DialogTrigger>
       <DialogContent className="max-w-lg max-h-[500px] h-auto p-4 bg-card rounded-xl shadow-lg space-y-1 border border-border text-primary">
         <DialogHeader className="flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <DialogTitle className="text-lg font-semibold text-primary">일정 생성</DialogTitle>
+            <DialogTitle className="text-lg font-semibold text-primary">일정 수정</DialogTitle>
             <DialogDescription />
-            <button className="text-gray-500 hover:text-red-500">
-              <PencilLine className="w-5 h-5" />
-            </button>
           </div>
         </DialogHeader>
 
