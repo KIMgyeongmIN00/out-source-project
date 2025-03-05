@@ -9,7 +9,6 @@ import {
 import { usePagePlans } from '@/lib/hooks/use-page-plans.hook';
 import PlanCard from '@/components/ui/plan-card';
 import { useState } from 'react';
-import { useMapStore } from '@/stores/map.store';
 import EditPlan from '@/components/features/modal/edit-modal';
 
 export default function ProfilePagination() {
@@ -18,8 +17,6 @@ export default function ProfilePagination() {
 
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
-
-  const setTargetLocation = useMapStore((state) => state.setTargetLocation);
 
   function handlePlanUlClick(e) {
     const planCard = e.target.closest('li');
@@ -31,7 +28,6 @@ export default function ProfilePagination() {
       if (plan) {
         setSelectedPlan(plan);
         setEditModalOpen(true);
-        setTargetLocation(plan.lat, plan.lng);
       }
     }
   }
